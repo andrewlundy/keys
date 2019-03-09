@@ -10,4 +10,5 @@ target 'Keys' do
   # Pods for Keys
 pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'Firebase/Auth'
 end
