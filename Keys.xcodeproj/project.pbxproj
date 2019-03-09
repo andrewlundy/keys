@@ -12,6 +12,10 @@
 		264AB42122329DC1006A0CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42022329DC1006A0CAB /* Assets.xcassets */; };
 		264AB42422329DC1006A0CAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42222329DC1006A0CAB /* LaunchScreen.storyboard */; };
 		264AB42C22329E36006A0CAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42B22329E36006A0CAB /* GoogleService-Info.plist */; };
+		2671042A223371B400BC83CC /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710428223371B400BC83CC /* SignUpVC.swift */; };
+		2671042B223371B400BC83CC /* SignUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26710429223371B400BC83CC /* SignUpVC.xib */; };
+		2671042E2234198F00BC83CC /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671042D2234198F00BC83CC /* ModalView.swift */; };
+		2671043022345E7400BC83CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671042F22345E7400BC83CC /* User.swift */; };
 		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
 		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
@@ -26,6 +30,11 @@
 		264AB42322329DC1006A0CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264AB42522329DC1006A0CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		264AB42B22329E36006A0CAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26710428223371B400BC83CC /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		26710429223371B400BC83CC /* SignUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpVC.xib; sourceTree = "<group>"; };
+		2671042D2234198F00BC83CC /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		2671042F22345E7400BC83CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		26710431223464D800BC83CC /* Keys.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keys.entitlements; sourceTree = "<group>"; };
 		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +74,8 @@
 		264AB41822329DC0006A0CAB /* Keys */ = {
 			isa = PBXGroup;
 			children = (
+				26710431223464D800BC83CC /* Keys.entitlements */,
+				2671042C223371CC00BC83CC /* XIBs */,
 				269179A12233541800208CD8 /* Model */,
 				269179A22233542700208CD8 /* View */,
 				26ECFF7322329F4200BC43AD /* Controller */,
@@ -78,9 +89,18 @@
 			path = Keys;
 			sourceTree = "<group>";
 		};
+		2671042C223371CC00BC83CC /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				26710429223371B400BC83CC /* SignUpVC.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
 		269179A12233541800208CD8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2671042F22345E7400BC83CC /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				269179A42233545F00208CD8 /* RoundedBlueBtn.swift */,
+				2671042D2234198F00BC83CC /* ModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2691799F2233509000208CD8 /* LoginVC.swift */,
+				26710428223371B400BC83CC /* SignUpVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -152,6 +174,11 @@
 				TargetAttributes = {
 					264AB41522329DC0006A0CAB = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -180,6 +207,7 @@
 			files = (
 				264AB42422329DC1006A0CAB /* LaunchScreen.storyboard in Resources */,
 				264AB42C22329E36006A0CAB /* GoogleService-Info.plist in Resources */,
+				2671042B223371B400BC83CC /* SignUpVC.xib in Resources */,
 				264AB42122329DC1006A0CAB /* Assets.xcassets in Resources */,
 				264AB41F22329DC0006A0CAB /* Main.storyboard in Resources */,
 			);
@@ -235,9 +263,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2671042A223371B400BC83CC /* SignUpVC.swift in Sources */,
 				269179A02233509000208CD8 /* LoginVC.swift in Sources */,
+				2671043022345E7400BC83CC /* User.swift in Sources */,
 				269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */,
 				264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */,
+				2671042E2234198F00BC83CC /* ModalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +415,7 @@
 			baseConfigurationReference = A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Keys/Keys.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5XELY2FE2R;
 				INFOPLIST_FILE = Keys/Info.plist;
@@ -403,6 +435,7 @@
 			baseConfigurationReference = 131C3A8F72AC4063E02A0265 /* Pods-Keys.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Keys/Keys.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5XELY2FE2R;
 				INFOPLIST_FILE = Keys/Info.plist;
