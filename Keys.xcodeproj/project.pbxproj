@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AB41922329DC0006A0CAB /* AppDelegate.swift */; };
-		264AB41C22329DC0006A0CAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AB41B22329DC0006A0CAB /* ViewController.swift */; };
 		264AB41F22329DC0006A0CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264AB41D22329DC0006A0CAB /* Main.storyboard */; };
 		264AB42122329DC1006A0CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42022329DC1006A0CAB /* Assets.xcassets */; };
 		264AB42422329DC1006A0CAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42222329DC1006A0CAB /* LaunchScreen.storyboard */; };
 		264AB42C22329E36006A0CAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 264AB42B22329E36006A0CAB /* GoogleService-Info.plist */; };
+		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
+		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,12 +21,13 @@
 		131C3A8F72AC4063E02A0265 /* Pods-Keys.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.release.xcconfig"; sourceTree = "<group>"; };
 		264AB41622329DC0006A0CAB /* Keys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264AB41922329DC0006A0CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		264AB41B22329DC0006A0CAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		264AB41E22329DC0006A0CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		264AB42022329DC1006A0CAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264AB42322329DC1006A0CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264AB42522329DC1006A0CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		264AB42B22329E36006A0CAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
 		F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,6 +65,8 @@
 		264AB41822329DC0006A0CAB /* Keys */ = {
 			isa = PBXGroup;
 			children = (
+				269179A12233541800208CD8 /* Model */,
+				269179A22233542700208CD8 /* View */,
 				26ECFF7322329F4200BC43AD /* Controller */,
 				264AB41922329DC0006A0CAB /* AppDelegate.swift */,
 				264AB41D22329DC0006A0CAB /* Main.storyboard */,
@@ -74,10 +78,25 @@
 			path = Keys;
 			sourceTree = "<group>";
 		};
+		269179A12233541800208CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		269179A22233542700208CD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				269179A42233545F00208CD8 /* RoundedBlueBtn.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		26ECFF7322329F4200BC43AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				264AB41B22329DC0006A0CAB /* ViewController.swift */,
+				2691799F2233509000208CD8 /* LoginVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,7 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264AB41C22329DC0006A0CAB /* ViewController.swift in Sources */,
+				269179A02233509000208CD8 /* LoginVC.swift in Sources */,
+				269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */,
 				264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

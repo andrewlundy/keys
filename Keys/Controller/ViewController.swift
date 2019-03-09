@@ -9,11 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
 
+    @IBOutlet weak var userTxtField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        userTxtField.attributedPlaceholder = NSAttributedString(string: "user", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         
     }
 }
