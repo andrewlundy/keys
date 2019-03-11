@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpVC" customModule="Keys" customModuleProvider="target">
             <connections>
+                <outlet property="activitySpinner" destination="oFP-VD-tmZ" id="gxc-S2-h1i"/>
                 <outlet property="passwordTxtField" destination="eoq-0Q-dJ6" id="ex6-WE-tum"/>
                 <outlet property="usernameTxtField" destination="XsN-TG-gm3" id="cvc-XK-wN7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,6 +29,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xs-if-SBd" customClass="ModalView" customModule="Keys" customModuleProvider="target">
                             <rect key="frame" x="60" y="193.5" width="255" height="280"/>
                             <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="oFP-VD-tmZ">
+                                    <rect key="frame" x="109" y="121.5" width="37" height="37"/>
+                                    <color key="color" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </activityIndicatorView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="uJ9-qp-vqa">
                                     <rect key="frame" x="40" y="49" width="175" height="120"/>
                                     <subviews>
@@ -112,7 +117,9 @@
                                 <constraint firstItem="Til-xc-EaM" firstAttribute="top" secondItem="uJ9-qp-vqa" secondAttribute="bottom" constant="41" id="R8k-Ac-lQA"/>
                                 <constraint firstItem="TWt-uP-IOA" firstAttribute="top" secondItem="2xs-if-SBd" secondAttribute="top" constant="8" id="Usb-aU-Gfw"/>
                                 <constraint firstAttribute="width" constant="255" id="eVR-hd-pbs"/>
+                                <constraint firstItem="oFP-VD-tmZ" firstAttribute="centerX" secondItem="2xs-if-SBd" secondAttribute="centerX" id="jbE-Pu-oqM"/>
                                 <constraint firstAttribute="height" constant="280" id="kaj-mt-5zQ"/>
+                                <constraint firstItem="oFP-VD-tmZ" firstAttribute="centerY" secondItem="2xs-if-SBd" secondAttribute="centerY" id="q4W-za-BBy"/>
                             </constraints>
                         </view>
                     </subviews>

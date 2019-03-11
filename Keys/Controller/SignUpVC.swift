@@ -17,6 +17,7 @@ class SignUpVC: UIViewController {
     
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
    
     
@@ -35,29 +36,49 @@ class SignUpVC: UIViewController {
         guard let usernameTxt = usernameTxtField.text, usernameTxtField.text != nil else { return }
         guard let passwordTxt = passwordTxtField.text, passwordTxtField.text != nil else { return }
         
+        activitySpinner.startAnimating()
+        activitySpinner.isHidden = false
+        
         Auth.auth().createUser(withEmail: usernameTxt, password: passwordTxt) { (authResult, error) in
             if error != nil {
-                print(error!._code)
-                self.handleError(error!)
+                self.activitySpinner.stopAnimating()
+                self.activitySpinner.isHidden = true
+                print((error! as NSError).code)
+                if let errorCode = AuthErrorCode(rawValue: (error! as NSError).code) {
+                    print(errorCode)
+                    let alert = UIAlertController(title: "Hold Up!", message: errorCode.errorMessage, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
                 return
             }
+            
+            Auth.auth().signIn(withEmail: usernameTxt, password: passwordTxt, completion: { (authResutl, error) in
+                if error == nil {
+                    self.activitySpinner.isHidden = true
+                    self.activitySpinner.stopAnimating()
+                    self.usernameTxtField.text = ""
+                    self.passwordTxtField.text = ""
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    debugPrint(error as Any)
+                }
+            })
         }
+        
     }
     
     
     func setUpView() {
-        let transition = CATransition()
-        transition.duration = 5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.fade
-        self.view.layer.add(transition, forKey: nil)
+        activitySpinner.isHidden = true
     }
     
     
 
 }
 
-// Extending off of the Firebase AuthErrorCode and setting the message to be returned depending on what error occurs
+// Extend off of the Firebase AuthErrorCode and set the message to be returned depending on what error occurs
 extension AuthErrorCode {
     var errorMessage: String {
         switch self {
@@ -81,20 +102,3 @@ extension AuthErrorCode {
     }
 }
 
-
-extension UIViewController {
-    func handleError(_ error: Error) {
-        if let errorCode = AuthErrorCode(rawValue: error._code) {
-            print(errorCode.errorMessage)
-            let alert = UIAlertController(title: "Hold Up!", message: errorCode.errorMessage, preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alert.addAction(okAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-    }
-    
-}
