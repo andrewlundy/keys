@@ -39,6 +39,8 @@ class LoginVC: UIViewController {
     func setupView() {
         userTxtField.attributedPlaceholder = NSAttributedString(string: "user", attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)])
         passwordTxtField.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)])
+        let navBarTitle = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = navBarTitle
     }
     
     
@@ -47,7 +49,5 @@ class LoginVC: UIViewController {
         signUpVC.modalTransitionStyle = .crossDissolve
         present(signUpVC, animated: true, completion: nil)
     }
-    
-    
     
 }

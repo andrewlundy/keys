@@ -15,6 +15,7 @@ class SignUpVC: UIViewController {
 
     var ref: DatabaseReference!
     
+    
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
@@ -25,6 +26,16 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
         setUpView()
         ref = Database.database().reference(withPath: "users")
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if user != nil {
+                self.dismiss(animated: true, completion: nil)
+                self.presentLoginController()
+            }
+        })
+        let currentUser = Auth.auth().currentUser
+        if let user = currentUser {
+            print(user.email)
+        }
     }
     
 
@@ -47,36 +58,44 @@ class SignUpVC: UIViewController {
                 if let errorCode = AuthErrorCode(rawValue: (error! as NSError).code) {
                     print(errorCode)
                     let alert = UIAlertController(title: "Hold Up!", message: errorCode.errorMessage, preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okAction)
+                    let okayAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okayAction)
                     self.present(alert, animated: true, completion: nil)
                 }
                 return
             }
             
-            Auth.auth().signIn(withEmail: usernameTxt, password: passwordTxt, completion: { (authResutl, error) in
+            Auth.auth().signIn(withEmail: usernameTxt, password: passwordTxt, completion: { (authResult, error) in
                 if error == nil {
                     self.activitySpinner.isHidden = true
                     self.activitySpinner.stopAnimating()
                     self.usernameTxtField.text = ""
                     self.passwordTxtField.text = ""
-                    self.dismiss(animated: true, completion: nil)
+                    
                 } else {
                     debugPrint(error as Any)
                 }
             })
+            
         }
         
+        
+        
     }
-    
     
     func setUpView() {
         activitySpinner.isHidden = true
     }
     
-    
-
+    func presentLoginController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "UserAccountsVC")
+        present(controller, animated: true, completion: nil)
+    }
 }
+
+
+
 
 // Extend off of the Firebase AuthErrorCode and set the message to be returned depending on what error occurs
 extension AuthErrorCode {
@@ -101,4 +120,14 @@ extension AuthErrorCode {
         }
     }
 }
+
+extension UIViewController {
+    func presentVCFromModal(viewController: UIViewController) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "UserAccountsVC")
+        viewController.present(vc, animated: true, completion: nil)
+    }
+}
+
+
 
