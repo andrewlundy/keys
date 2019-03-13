@@ -12,16 +12,18 @@ import FirebaseDatabase
 
 class UserAccountsVC: UIViewController {
 
+    @IBOutlet weak var nameLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
+    
     
 
     @IBAction func logoutBtnPressed(_ sender: Any) {
-        
         do {
             try Auth.auth().signOut()
             dismiss(animated: true, completion: nil)

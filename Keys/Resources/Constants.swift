@@ -8,4 +8,4 @@
 
 import Foundation
 
-
+let SEGUE_TO_USER_ACCOUNTS = "toUserAccountsVC"

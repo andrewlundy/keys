@@ -29,13 +29,10 @@ class SignUpVC: UIViewController {
         Auth.auth().addStateDidChangeListener({ (auth, user) in
             if user != nil {
                 self.dismiss(animated: true, completion: nil)
+                
                 self.presentLoginController()
             }
         })
-        let currentUser = Auth.auth().currentUser
-        if let user = currentUser {
-            print(user.email)
-        }
     }
     
 
@@ -71,16 +68,12 @@ class SignUpVC: UIViewController {
                     self.activitySpinner.stopAnimating()
                     self.usernameTxtField.text = ""
                     self.passwordTxtField.text = ""
-                    
+                    self.present(UserAccountsVC(), animated: true, completion: nil)
                 } else {
                     debugPrint(error as Any)
                 }
             })
-            
         }
-        
-        
-        
     }
     
     func setUpView() {
