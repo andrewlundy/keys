@@ -12,30 +12,73 @@ import FirebaseDatabase
 
 class UserAccountsVC: UIViewController {
 
-    @IBOutlet weak var nameLbl: UILabel!
+//, UITableViewDelegate, UITableViewDataSource
     
+    // Outlets
+    @IBOutlet weak var userNameLbl: UILabel!
+    @IBOutlet weak var tableview: UITableView!
+    
+    
+    
+    // Variables
+    var ref = Database.database().reference()
+    let userID = Auth.auth().currentUser!.uid
+    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)")
+    let accounts: [UserAccount] = []
+    
+
+    // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameLbl.text = ""
         
+        // Update username label
+        ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let username = value?["username"] as? String ?? ""
+            self.userNameLbl.text = username
+        }
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
+      
+        
+        userRef.observe(.value) { (snapshot) in
+            print(snapshot.value as Any)
+        }
     }
     
     
-
+    // Actions
     @IBAction func logoutBtnPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
             dismiss(animated: true, completion: nil)
-            print(Auth.auth().currentUser?.email)
         } catch {
             debugPrint("No")
         }
         
     }
 
+
+    @IBAction func addAccountBtnPressed(_ sender: Any) {
+//        guard let userId = Auth.auth().currentUser?.uid, Auth.auth().currentUser?.uid != nil else { return }
+        showModal()
+    }
     
+    func showModal() {
+        let modalVC = AddAccountVC()
+        modalVC.modalTransitionStyle = .crossDissolve
+        modalVC.modalPresentationStyle = .custom
+        present(modalVC, animated: true, completion: nil)
+        
+    }
  
- 
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
 
 }

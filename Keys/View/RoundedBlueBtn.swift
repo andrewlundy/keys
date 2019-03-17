@@ -19,6 +19,12 @@ class RoundedBlueBtn: UIButton {
         }
     }
     
+    @IBInspectable var btnTintColor: UIColor = UIColor.white {
+        didSet {
+            tintColor = self.btnTintColor
+        }
+    }
+    
     @IBInspectable var cornerRadius: CGFloat = 10 {
         didSet {
             self.layer.cornerRadius = cornerRadius
@@ -39,6 +45,7 @@ class RoundedBlueBtn: UIButton {
     func updateView() {
         self.layer.cornerRadius = cornerRadius
         self.backgroundColor = buttonColor
+        self.tintColor = btnTintColor
     }
 
 }

@@ -17,6 +17,8 @@ class ModalView: UIView {
         }
     }
     
+    
+    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setUpView()
@@ -25,6 +27,7 @@ class ModalView: UIView {
     
     func setUpView() {
         self.layer.cornerRadius = cornerRadius
+    
     }
     
     override func awakeFromNib() {

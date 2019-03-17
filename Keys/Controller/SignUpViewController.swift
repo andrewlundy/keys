@@ -1,53 +1,40 @@
 //
-//  SignUpVC.swift
+//  SignUpViewController.swift
 //  Keys
 //
-//  Created by Andrew Lundy on 3/8/19.
+//  Created by Andrew Lundy on 3/14/19.
 //  Copyright © 2019 Andrew Lundy. All rights reserved.
 //
 
 import UIKit
 import Firebase
 import FirebaseDatabase
-import FirebaseAuth
 
-class SignUpVC: UIViewController {
-
-    var ref: DatabaseReference!
-    
-    
-    @IBOutlet weak var usernameTxtField: UITextField!
+class SignUpViewController: UIViewController {
+    // Outlets
+    @IBOutlet weak var nameTxtField: UITextField!
+    @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
-   
+    var ref = Database.database().reference()
     
+    
+    // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
-        ref = Database.database().reference(withPath: "users")
-        Auth.auth().addStateDidChangeListener({ (auth, user) in
-            if user != nil {
-                self.dismiss(animated: true, completion: nil)
-                
-                self.presentLoginController()
-            }
-        })
+        activitySpinner.isHidden = true
     }
     
-
-    @IBAction func closeBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let usernameTxt = usernameTxtField.text, usernameTxtField.text != nil else { return }
+    // Actions
+    @IBAction func continueBtnPressed(_ sender: Any) {
+        guard let emailTxt = emailTxtField.text, emailTxtField.text != nil else { return }
         guard let passwordTxt = passwordTxtField.text, passwordTxtField.text != nil else { return }
         
         activitySpinner.startAnimating()
         activitySpinner.isHidden = false
         
-        Auth.auth().createUser(withEmail: usernameTxt, password: passwordTxt) { (authResult, error) in
+        Auth.auth().createUser(withEmail: emailTxt, password: passwordTxt) { (authResult, error) in
             if error != nil {
                 self.activitySpinner.stopAnimating()
                 self.activitySpinner.isHidden = true
@@ -62,13 +49,16 @@ class SignUpVC: UIViewController {
                 return
             }
             
-            Auth.auth().signIn(withEmail: usernameTxt, password: passwordTxt, completion: { (authResult, error) in
+            Auth.auth().signIn(withEmail: emailTxt, password: passwordTxt, completion: { (authResult, error) in
                 if error == nil {
+                    let username = self.nameTxtField.text
+                    self.ref.child("users").child(Auth.auth().currentUser!.uid).setValue(["username": username])
                     self.activitySpinner.isHidden = true
                     self.activitySpinner.stopAnimating()
-                    self.usernameTxtField.text = ""
+                    self.nameTxtField.text = ""
                     self.passwordTxtField.text = ""
-                    self.present(UserAccountsVC(), animated: true, completion: nil)
+                    self.emailTxtField.text = ""
+                    self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
                 } else {
                     debugPrint(error as Any)
                 }
@@ -76,18 +66,11 @@ class SignUpVC: UIViewController {
         }
     }
     
-    func setUpView() {
-        activitySpinner.isHidden = true
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        
     }
     
-    func presentLoginController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "UserAccountsVC")
-        present(controller, animated: true, completion: nil)
-    }
 }
-
-
 
 
 // Extend off of the Firebase AuthErrorCode and set the message to be returned depending on what error occurs
@@ -113,14 +96,3 @@ extension AuthErrorCode {
         }
     }
 }
-
-extension UIViewController {
-    func presentVCFromModal(viewController: UIViewController) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "UserAccountsVC")
-        viewController.present(vc, animated: true, completion: nil)
-    }
-}
-
-
-
