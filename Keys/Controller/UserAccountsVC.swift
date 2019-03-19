@@ -22,9 +22,9 @@ class UserAccountsVC: UIViewController {
     
     // Variables
     var ref = Database.database().reference()
-    let userID = Auth.auth().currentUser!.uid
-    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)")
-    let accounts: [UserAccount] = []
+    let userID = Auth.auth().currentUser?.uid
+    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts")
+    var accounts: [UserAccount] = []
     
 
     // Overrides
@@ -33,17 +33,33 @@ class UserAccountsVC: UIViewController {
         userNameLbl.text = ""
         
         // Update username label
-        ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as? String ?? ""
             self.userNameLbl.text = username
         }
+        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
       
         
         userRef.observe(.value) { (snapshot) in
             print(snapshot.value as Any)
+        }
+        
+        userRef.observe(.value) { (snapshot) in
+            var newAccounts: [UserAccount] = []
+            for child in snapshot.children {
+                if let snapshot = child as? [String: AnyObject] {
+                    let name = snapshot["name"] as? String ?? ""
+                    let email = snapshot["email"] as? String ?? ""
+                    let password = snapshot["password"] as? String ?? ""
+                    let newAccount = UserAccount(name: name, email: email, password: password)
+                    newAccounts.append(newAccount)
+                }
+            }
+            self.accounts = newAccounts
+            print(newAccounts)
         }
     }
     

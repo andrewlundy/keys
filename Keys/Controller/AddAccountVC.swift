@@ -32,12 +32,18 @@ class AddAccountVC: UIViewController {
         guard let email = emailTxtField.text, emailTxtField.text != nil else { return }
         guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
         
+        
+        
+        self.ref.child("users/\(userId)/accounts/\(accountName)/name").setValue(accountName)
         self.ref.child("users/\(userId)/accounts/\(accountName)/email").setValue(email)
         self.ref.child("users/\(userId)/accounts/\(accountName)/password").setValue(password)
+        
+  
         
         accountNameTxtField.text = ""
         emailTxtField.text = ""
         passwordTxtField.text = ""
+  
     }
     
     @IBAction func closeBtnPressed(_ sender: Any) {

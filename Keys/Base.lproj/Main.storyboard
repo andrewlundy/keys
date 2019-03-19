@@ -47,7 +47,7 @@
                                         </constraints>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="son-Nk-hA9">
                                         <rect key="frame" x="0.0" y="64" width="223" height="2"/>
@@ -493,6 +493,6 @@
         <image name="add" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vK8-Uo-WcU"/>
+        <segue reference="k0b-C4-7rp"/>
     </inferredMetricsTieBreakers>
 </document>

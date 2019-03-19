@@ -14,7 +14,9 @@ struct UserAccount {
     let name: String
     let email: String
     let password: String
- 
+
+    
+    
     init(name: String, email: String, password: String) {
         self.name = name
         self.password = password

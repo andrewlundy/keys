@@ -33,14 +33,19 @@ class LoginVC: UIViewController {
     
     // Actions
     @IBAction func loginBtnPressed(_ sender: Any) {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == Auth.auth().currentUser {
-                self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
-            } else {
+        guard let email = userTxtField.text, userTxtField.text != nil else { return }
+        guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if error != nil {
                 let alert = UIAlertController(title: "Heads Up!", message: "Please enter your email and password", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(alertAction)
                 self.present(alert, animated: true, completion: nil)
+            } else {
+                self.userTxtField.text = ""
+                self.passwordTxtField.text = ""
+                self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
             }
         }
     }
