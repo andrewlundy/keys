@@ -42,7 +42,7 @@ class UserAccountsVC: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
       
-        
+
         userRef.observe(.value) { (snapshot) in
             print(snapshot.value as Any)
         }
@@ -50,16 +50,16 @@ class UserAccountsVC: UIViewController {
         userRef.observe(.value) { (snapshot) in
             var newAccounts: [UserAccount] = []
             for child in snapshot.children {
-                if let snapshot = child as? [String: AnyObject] {
-                    let name = snapshot["name"] as? String ?? ""
-                    let email = snapshot["email"] as? String ?? ""
-                    let password = snapshot["password"] as? String ?? ""
+                if let data = child as? [String: AnyObject] {
+                    let name = data["name"] as? String ?? ""
+                    let email = data["email"] as? String ?? ""
+                    let password = data["password"] as? String ?? ""
                     let newAccount = UserAccount(name: name, email: email, password: password)
                     newAccounts.append(newAccount)
                 }
             }
             self.accounts = newAccounts
-            print(newAccounts)
+            print(self.accounts)
         }
     }
     
