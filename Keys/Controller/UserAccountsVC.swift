@@ -9,14 +9,14 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
-class UserAccountsVC: UIViewController {
-
-//, UITableViewDelegate, UITableViewDataSource
+class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Outlets
     @IBOutlet weak var userNameLbl: UILabel!
-    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     
     
@@ -30,7 +30,18 @@ class UserAccountsVC: UIViewController {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
         userNameLbl.text = ""
+        
+        let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
+        noAccountsLbl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+        noAccountsLbl.text = "No accounts to display"
+        noAccountsLbl.textAlignment = .center
+        self.view.addSubview(noAccountsLbl)
+        
+        
         
         // Update username label
         ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
@@ -41,25 +52,28 @@ class UserAccountsVC: UIViewController {
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
-      
-
-        userRef.observe(.value) { (snapshot) in
-            print(snapshot.value as Any)
-        }
         
-        userRef.observe(.value) { (snapshot) in
+        // Listen for change of value in the user's accounts
+        userRef.queryOrdered(byChild: "name").observe(.value) { (snapshot) in
             var newAccounts: [UserAccount] = []
-            for child in snapshot.children {
-                if let data = child as? [String: AnyObject] {
-                    let name = data["name"] as? String ?? ""
-                    let email = data["email"] as? String ?? ""
-                    let password = data["password"] as? String ?? ""
-                    let newAccount = UserAccount(name: name, email: email, password: password)
+            // Get the value of the data and cast it as a dictionary
+            guard let data = snapshot.value as? [String: AnyObject] else { return }
+            // Loop through the children of the data above
+            for child in data {
+                // Check to see if there is child data in the child from above, if so - cast it as a dictionary
+                if let childData = child.value as? [String: Any] {
+                    let name = childData["name"] as? String ?? ""
+                    let email = childData["email"] as? String ?? ""
+                    let password = childData["password"] as? String ?? ""
+                    var newAccount = UserAccount(name: name, email: email, password: password)
+                    newAccount.ref = snapshot.ref
                     newAccounts.append(newAccount)
                 }
             }
             self.accounts = newAccounts
-            print(self.accounts)
+            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+           
+            self.tableView.reloadData()
         }
     }
     
@@ -75,7 +89,6 @@ class UserAccountsVC: UIViewController {
         
     }
 
-
     @IBAction func addAccountBtnPressed(_ sender: Any) {
 //        guard let userId = Auth.auth().currentUser?.uid, Auth.auth().currentUser?.uid != nil else { return }
         showModal()
@@ -89,12 +102,34 @@ class UserAccountsVC: UIViewController {
         
     }
  
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
+    
+    // Protocol Conformation Functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return accounts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: ACCOUNT_CELL_ID) as! AccountCell
+        let account = accounts[indexPath.row]
+        cell.accountNameLbl.text = account.name
+        cell.emailAddressLbl.text = account.email
+        cell.passwordLbl.text = account.password
+        return cell
+    }
+    
+    // Set the cells to be editable
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Set the editing style of the cells
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let account = accounts[indexPath.row]
+            account.ref?.removeValue()
+            self.accounts.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
 }

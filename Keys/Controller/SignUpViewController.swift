@@ -9,20 +9,25 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     // Outlets
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
+    // Variables
     var ref = Database.database().reference()
     
     
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTxtField.delegate = self
+        emailTxtField.delegate = self
+        passwordTxtField.delegate = self
         activitySpinner.isHidden = true
     }
     
@@ -70,7 +75,24 @@ class SignUpViewController: UIViewController {
         
     }
     
+    // Protocol Conformation Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTxtField:
+            emailTxtField.becomeFirstResponder()
+        case emailTxtField:
+            passwordTxtField.becomeFirstResponder()
+        case passwordTxtField:
+            passwordTxtField.resignFirstResponder()
+        default:
+            resignFirstResponder()
+        }
+        return true
+    }
+    
 }
+
+
 
 
 // Extend off of the Firebase AuthErrorCode and set the message to be returned depending on what error occurs

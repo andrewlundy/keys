@@ -14,13 +14,14 @@ struct UserAccount {
     let name: String
     let email: String
     let password: String
-
+    var ref: DatabaseReference?
     
     
     init(name: String, email: String, password: String) {
         self.name = name
         self.password = password
         self.email = email
+        self.ref = nil
     }
     
     func toAnyObject() -> Any {

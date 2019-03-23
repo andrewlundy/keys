@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
     // Outlets
     @IBOutlet weak var userTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -19,7 +20,8 @@ class LoginVC: UIViewController {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        userTxtField.delegate = self
+        passwordTxtField.delegate = self
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if Auth.auth().currentUser != nil {
                 self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
@@ -27,8 +29,6 @@ class LoginVC: UIViewController {
                 print("Please sign up")
             }
         }
-        
-        
     }
     
     // Actions
@@ -62,12 +62,17 @@ class LoginVC: UIViewController {
     @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
         
     }
+   
     
-    // Swift Functions
-    func setupView() {
-        userTxtField.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)])
-        passwordTxtField.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)])
-//        let navBarTitle = [NSAttributedString.Key.foregroundColor:UIColor.white]
-//        navigationController?.navigationBar.titleTextAttributes = navBarTitle
+    // Protocol Conformation Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case userTxtField:
+            passwordTxtField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
     }
+    
 }
