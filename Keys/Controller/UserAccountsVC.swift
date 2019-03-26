@@ -18,27 +18,30 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     
-    
-    
     // Variables
     var ref = Database.database().reference()
     let userID = Auth.auth().currentUser?.uid
     let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts")
     var accounts: [UserAccount] = []
-    
+    let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
 
+    
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         userNameLbl.text = ""
         
-        let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
+        noAccountsLbl.isHidden = false
         noAccountsLbl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         noAccountsLbl.text = "No accounts to display"
         noAccountsLbl.textAlignment = .center
+        
+        
         self.view.addSubview(noAccountsLbl)
         
         
@@ -54,7 +57,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         // Listen for change of value in the user's accounts
-        userRef.queryOrdered(byChild: "name").observe(.value) { (snapshot) in
+        userRef.observe(.value) { (snapshot) in
             var newAccounts: [UserAccount] = []
             // Get the value of the data and cast it as a dictionary
             guard let data = snapshot.value as? [String: AnyObject] else { return }
@@ -72,8 +75,18 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             self.accounts = newAccounts
             self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-           
+            
+            if self.accounts.count > 0 {
+                self.noAccountsLbl.isHidden = true
+            }
+            
+            if self.accounts.count == 0 {
+                self.noAccountsLbl.isHidden = false
+            }
+            
             self.tableView.reloadData()
+            
+            
         }
     }
     
@@ -90,7 +103,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func addAccountBtnPressed(_ sender: Any) {
-//        guard let userId = Auth.auth().currentUser?.uid, Auth.auth().currentUser?.uid != nil else { return }
         showModal()
     }
     
@@ -99,6 +111,10 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         modalVC.modalTransitionStyle = .crossDissolve
         modalVC.modalPresentationStyle = .custom
         present(modalVC, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func unwindFromFullAccount(segue: UIStoryboardSegue) {
         
     }
  
@@ -129,7 +145,17 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             account.ref?.removeValue()
             self.accounts.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+            if accounts.count > 0 {
+                noAccountsLbl.isHidden = true
+            }
+            if accounts.count == 0 {
+                noAccountsLbl.isHidden = false
+            }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: TO_FULL_ACCOUNT_VIEW, sender: self)
     }
 
 }

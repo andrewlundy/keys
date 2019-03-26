@@ -17,8 +17,6 @@ class ModalView: UIView {
         }
     }
     
-    
-    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setUpView()

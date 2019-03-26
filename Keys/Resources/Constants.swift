@@ -11,3 +11,4 @@ import Foundation
 let SEGUE_TO_USER_ACCOUNTS = "toUserAccountsVC"
 let SEGUE_TO_SIGNUP_VC = "toSignUpVC"
 let ACCOUNT_CELL_ID = "AccountCell"
+let TO_FULL_ACCOUNT_VIEW = "toFullAccountView"

@@ -43,9 +43,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
                 self.activitySpinner.stopAnimating()
                 self.activitySpinner.isHidden = true
-                print((error! as NSError).code)
                 if let errorCode = AuthErrorCode(rawValue: (error! as NSError).code) {
-                    print(errorCode)
                     let alert = UIAlertController(title: "Hold Up!", message: errorCode.errorMessage, preferredStyle: .alert)
                     let okayAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(okayAction)
@@ -95,14 +93,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
 
 
-// Extend off of the Firebase AuthErrorCode and set the message to be returned depending on what error occurs
+// Extend off of the Firebase AuthErrorCode and set errorMessage to be returned depending on what error occurs
 extension AuthErrorCode {
     var errorMessage: String {
         switch self {
         case .emailAlreadyInUse:
             return "The email is already in use with another account"
         case .userNotFound:
-            return "Account not found for the specified user. Please check and try again"
+            return "No account found with the provided email address. Please check and try again"
         case .userDisabled:
             return "Your account has been disabled. Please contact support."
         case .invalidEmail, .invalidSender, .invalidRecipientEmail:

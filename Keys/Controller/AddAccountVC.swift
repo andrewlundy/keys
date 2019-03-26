@@ -43,6 +43,8 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         accountNameTxtField.text = ""
         emailTxtField.text = ""
         passwordTxtField.text = ""
+        
+        accountNameTxtField.becomeFirstResponder()
     }
     
     @IBAction func closeBtnPressed(_ sender: Any) {

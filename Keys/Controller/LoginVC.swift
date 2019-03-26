@@ -38,21 +38,36 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if error != nil {
-                let alert = UIAlertController(title: "Heads Up!", message: "Please enter your email and password", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(alertAction)
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                self.userTxtField.text = ""
-                self.passwordTxtField.text = ""
-                self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
+                if email == "" && password == "" {
+                    let alert = UIAlertController(title: "Heads Up!", message: "Please enter a username and password", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else if let errorCode = AuthErrorCode(rawValue: (error! as NSError).code) {
+                    let alert = UIAlertController(title: "Heads Up!", message: errorCode.errorMessage, preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.userTxtField.text = ""
+                    self.passwordTxtField.text = ""
+                    self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
+                }
             }
         }
     }
     
+    @IBAction func resetPasswordBtnPressed(_ sender: Any) {
+        let modalVC = ResetPasswordModal()
+        modalVC.modalPresentationStyle = .custom
+        modalVC.modalTransitionStyle = .crossDissolve
+        present(modalVC, animated: true, completion: nil)
+    }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: SEGUE_TO_SIGNUP_VC, sender: nil)
+        userTxtField.text = ""
+        passwordTxtField.text = ""
     }
     
     @IBAction func demoBtnPressed(_ sender: Any) {
