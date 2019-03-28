@@ -70,9 +70,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         passwordTxtField.text = ""
     }
     
-    @IBAction func demoBtnPressed(_ sender: Any) {
-        
-    }
     
     @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
         
