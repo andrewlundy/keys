@@ -15,19 +15,14 @@ class AccountCell: UITableViewCell {
     @IBOutlet weak var emailAddressLbl: UILabel!
     @IBOutlet weak var passwordLbl: UILabel!
     
- 
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        
+        super.setSelected(false, animated: animated)
     }
 
 }

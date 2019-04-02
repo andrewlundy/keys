@@ -20,6 +20,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UITextField.appearance().tintColor = UIColor(red: 13/255, green: 62/255, blue: 108/255, alpha: 1)
         userTxtField.delegate = self
         passwordTxtField.delegate = self
         Auth.auth().addStateDidChangeListener { (auth, user) in

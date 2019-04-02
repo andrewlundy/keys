@@ -20,10 +20,12 @@
 		2671042E2234198F00BC83CC /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671042D2234198F00BC83CC /* ModalView.swift */; };
 		2671043022345E7400BC83CC /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671042F22345E7400BC83CC /* UserAccount.swift */; };
 		268118AD2249C6C400754B81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268118AC2249C6C400754B81 /* Images.xcassets */; };
+		26828E86225065E0003C6FA6 /* AccountDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26828E85225065E0003C6FA6 /* AccountDetailsCell.swift */; };
 		268B3D132249BC3E00FCB9FE /* ResetPasswordModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */; };
 		268B3D142249BC3E00FCB9FE /* ResetPasswordModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268B3D122249BC3E00FCB9FE /* ResetPasswordModal.xib */; };
 		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
 		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
+		26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,10 +47,12 @@
 		2671042F22345E7400BC83CC /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		26710431223464D800BC83CC /* Keys.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keys.entitlements; sourceTree = "<group>"; };
 		268118AC2249C6C400754B81 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		26828E85225065E0003C6FA6 /* AccountDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsCell.swift; sourceTree = "<group>"; };
 		268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordModal.swift; sourceTree = "<group>"; };
 		268B3D122249BC3E00FCB9FE /* ResetPasswordModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordModal.xib; sourceTree = "<group>"; };
 		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
+		26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsVC.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
 		F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +137,7 @@
 				2671042D2234198F00BC83CC /* ModalView.swift */,
 				269179A42233545F00208CD8 /* RoundedBlueBtn.swift */,
 				263B109A223EBDB8008C7DB7 /* AccountCell.swift */,
+				26828E85225065E0003C6FA6 /* AccountDetailsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */,
 				266BD25A223B14D90008D44D /* SignUpViewController.swift */,
 				260E2A03223682EA0002E4AD /* UserAccountsVC.swift */,
+				26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,7 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26828E86225065E0003C6FA6 /* AccountDetailsCell.swift in Sources */,
 				269179A02233509000208CD8 /* LoginVC.swift in Sources */,
+				26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */,
 				263B109B223EBDB8008C7DB7 /* AccountCell.swift in Sources */,
 				2671043022345E7400BC83CC /* UserAccount.swift in Sources */,
 				260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */,

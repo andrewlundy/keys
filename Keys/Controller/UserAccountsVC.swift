@@ -14,8 +14,10 @@ import FirebaseAuth
 class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Outlets
-    @IBOutlet weak var userNameLbl: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var usernameLbl: UIBarButtonItem!
+    
     
     
     // Variables
@@ -30,17 +32,17 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        
+
+        usernameLbl.target = nil
         tableView.delegate = self
         tableView.dataSource = self
         
-        userNameLbl.text = ""
+        usernameLbl.title = ""
         
         noAccountsLbl.isHidden = false
         noAccountsLbl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         noAccountsLbl.text = "No accounts to display"
         noAccountsLbl.textAlignment = .center
-        
         
         self.view.addSubview(noAccountsLbl)
         
@@ -50,7 +52,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as? String ?? ""
-            self.userNameLbl.text = username
+            self.usernameLbl.title = username
         }
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -85,8 +87,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             self.tableView.reloadData()
-            
-            
         }
     }
     
@@ -95,16 +95,17 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func logoutBtnPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            dismiss(animated: true, completion: nil)
+            navigationController?.popViewController(animated: true)
         } catch {
             debugPrint("No")
         }
         
     }
 
-    @IBAction func addAccountBtnPressed(_ sender: Any) {
+    @IBAction func addBtnPressed(_ sender: Any) {
         showModal()
     }
+    
     
     func showModal() {
         let modalVC = AddAccountVC()
@@ -154,8 +155,19 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: TO_FULL_ACCOUNT_VIEW, sender: self)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == TO_FULL_ACCOUNT_VIEW {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let accountDetails = segue.destination as! AccountDetailsVC
+                accountDetails.account = accounts[indexPath.row]
+//                accountDetails.title = accounts[indexPath.row].name
+//                accountDetails.emailAddress = accounts[indexPath.row].email
+            }
+        }
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: TO_FULL_ACCOUNT_VIEW, sender: nil)
+    }
 }
