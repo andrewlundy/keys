@@ -404,15 +404,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-S7-D04">
-                                <rect key="frame" x="317" y="10" width="87" height="36"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Edit Details">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cyq-Dd-P3o">
-                                <rect key="frame" x="0.0" y="54" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="709"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountDetailCell" rowHeight="65" id="ANK-ib-rLg" customClass="AccountDetailsCell" customModule="Keys" customModuleProvider="target">
@@ -431,7 +424,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="testing@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgY-7h-28I">
                                                     <rect key="frame" x="20" y="37" width="136" height="22"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -455,19 +447,26 @@
                                     <outlet property="delegate" destination="xEk-fk-qnu" id="O4b-2f-P0B"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNw-Jg-4FW">
+                                <rect key="frame" x="20" y="16" width="137" height="41"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fQh-S7-D04" firstAttribute="top" secondItem="KbH-U1-BZB" secondAttribute="top" constant="10" id="0PS-Ra-1PJ"/>
                             <constraint firstItem="Cyq-Dd-P3o" firstAttribute="leading" secondItem="KbH-U1-BZB" secondAttribute="leading" id="2wI-MZ-sJd"/>
                             <constraint firstItem="Cyq-Dd-P3o" firstAttribute="trailing" secondItem="KbH-U1-BZB" secondAttribute="trailing" id="3wN-oE-Ccd"/>
-                            <constraint firstItem="KbH-U1-BZB" firstAttribute="trailing" secondItem="fQh-S7-D04" secondAttribute="trailing" constant="10" id="4dQ-5D-QbL"/>
-                            <constraint firstItem="Cyq-Dd-P3o" firstAttribute="top" secondItem="fQh-S7-D04" secondAttribute="bottom" constant="8" id="9Pl-36-ez7"/>
-                            <constraint firstItem="Cyq-Dd-P3o" firstAttribute="bottom" secondItem="KbH-U1-BZB" secondAttribute="bottom" id="Yam-qV-uQQ"/>
+                            <constraint firstItem="Cyq-Dd-P3o" firstAttribute="bottom" secondItem="KbH-U1-BZB" secondAttribute="bottom" id="ESY-rS-JGa"/>
+                            <constraint firstItem="zNw-Jg-4FW" firstAttribute="top" secondItem="KbH-U1-BZB" secondAttribute="top" constant="16" id="IqT-CL-zFs"/>
+                            <constraint firstItem="zNw-Jg-4FW" firstAttribute="leading" secondItem="KbH-U1-BZB" secondAttribute="leading" constant="20" id="NQ1-br-06f"/>
+                            <constraint firstItem="Cyq-Dd-P3o" firstAttribute="top" secondItem="zNw-Jg-4FW" secondAttribute="bottom" constant="8" id="aBU-xI-3fj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KbH-U1-BZB"/>
                     </view>
                     <connections>
+                        <outlet property="accountNameLbl" destination="zNw-Jg-4FW" id="ENu-on-2ih"/>
                         <outlet property="tableView" destination="Cyq-Dd-P3o" id="AII-HY-N4Y"/>
                     </connections>
                 </viewController>

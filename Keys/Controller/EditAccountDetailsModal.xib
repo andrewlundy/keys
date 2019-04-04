@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditAccountDetailsModal" customModule="Keys" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ee9-cP-JvU">
+                    <rect key="frame" x="0.0" y="34" width="414" height="828"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qid-Yo-IOO">
+                            <rect key="frame" x="20" y="69" width="137" height="41"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maO-Rz-TWh">
+                            <rect key="frame" x="20" y="126" width="44" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter new email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4O-7D-rle">
+                            <rect key="frame" x="20" y="153" width="214" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Qid-Yo-IOO" firstAttribute="top" secondItem="Ee9-cP-JvU" secondAttribute="top" constant="69" id="c9W-CR-jYB"/>
+                        <constraint firstItem="Qid-Yo-IOO" firstAttribute="leading" secondItem="Ee9-cP-JvU" secondAttribute="leading" constant="20" id="oyN-xV-9iM"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVS-C5-NAa">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzA-3r-sXX">
+                            <rect key="frame" x="10" y="43" width="56" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelBtnPressed:" destination="-1" eventType="touchUpInside" id="nav-Yh-uXx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="88" id="7z6-kA-T41"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ee9-cP-JvU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3bo-sk-74k"/>
+                <constraint firstItem="Ee9-cP-JvU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="AcX-YK-v7e"/>
+                <constraint firstItem="KVS-C5-NAa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Byv-5y-jey"/>
+                <constraint firstItem="KVS-C5-NAa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NTn-H0-1cF"/>
+                <constraint firstItem="Ee9-cP-JvU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="SzO-zv-pqB"/>
+                <constraint firstItem="Ee9-cP-JvU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TQv-Wn-2fN"/>
+                <constraint firstItem="Ee9-cP-JvU" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="egU-S5-fzg"/>
+                <constraint firstItem="KVS-C5-NAa" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fTm-ys-cJw"/>
+                <constraint firstItem="KVS-C5-NAa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ox0-xE-He7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E2A03223682EA0002E4AD /* UserAccountsVC.swift */; };
+		262FB0B52255B13E00D3EE3A /* EditAccountDetailsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FB0B32255B13E00D3EE3A /* EditAccountDetailsModal.swift */; };
+		262FB0B62255B13E00D3EE3A /* EditAccountDetailsModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262FB0B42255B13E00D3EE3A /* EditAccountDetailsModal.xib */; };
 		263B109B223EBDB8008C7DB7 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B109A223EBDB8008C7DB7 /* AccountCell.swift */; };
 		264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AB41922329DC0006A0CAB /* AppDelegate.swift */; };
 		264AB41F22329DC0006A0CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264AB41D22329DC0006A0CAB /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		131C3A8F72AC4063E02A0265 /* Pods-Keys.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.release.xcconfig"; sourceTree = "<group>"; };
 		260E2A03223682EA0002E4AD /* UserAccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountsVC.swift; sourceTree = "<group>"; };
+		262FB0B32255B13E00D3EE3A /* EditAccountDetailsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountDetailsModal.swift; sourceTree = "<group>"; };
+		262FB0B42255B13E00D3EE3A /* EditAccountDetailsModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditAccountDetailsModal.xib; path = ../Controller/EditAccountDetailsModal.xib; sourceTree = "<group>"; };
 		263B109A223EBDB8008C7DB7 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		264AB41622329DC0006A0CAB /* Keys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264AB41922329DC0006A0CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			children = (
 				264AE82E223CA50400573D3C /* AddAccountVC.xib */,
 				268B3D122249BC3E00FCB9FE /* ResetPasswordModal.xib */,
+				262FB0B42255B13E00D3EE3A /* EditAccountDetailsModal.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -145,12 +150,13 @@
 		26ECFF7322329F4200BC43AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */,
 				264AE82D223CA50400573D3C /* AddAccountVC.swift */,
+				262FB0B32255B13E00D3EE3A /* EditAccountDetailsModal.swift */,
 				2691799F2233509000208CD8 /* LoginVC.swift */,
 				268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */,
 				266BD25A223B14D90008D44D /* SignUpViewController.swift */,
 				260E2A03223682EA0002E4AD /* UserAccountsVC.swift */,
-				26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -239,6 +245,7 @@
 			files = (
 				264AB42422329DC1006A0CAB /* LaunchScreen.storyboard in Resources */,
 				264AB42C22329E36006A0CAB /* GoogleService-Info.plist in Resources */,
+				262FB0B62255B13E00D3EE3A /* EditAccountDetailsModal.xib in Resources */,
 				264AB41F22329DC0006A0CAB /* Main.storyboard in Resources */,
 				268118AD2249C6C400754B81 /* Images.xcassets in Resources */,
 				264AE830223CA50400573D3C /* AddAccountVC.xib in Resources */,
@@ -308,6 +315,7 @@
 				269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */,
 				268B3D132249BC3E00FCB9FE /* ResetPasswordModal.swift in Sources */,
 				264AE82F223CA50400573D3C /* AddAccountVC.swift in Sources */,
+				262FB0B52255B13E00D3EE3A /* EditAccountDetailsModal.swift in Sources */,
 				264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */,
 				2671042E2234198F00BC83CC /* ModalView.swift in Sources */,
 				266937CD2237218A0012B13F /* Constants.swift in Sources */,

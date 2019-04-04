@@ -162,7 +162,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let accountDetails = segue.destination as! AccountDetailsVC
                 accountDetails.account = accounts[indexPath.row]
 //                accountDetails.title = accounts[indexPath.row].name
-//                accountDetails.emailAddress = accounts[indexPath.row].email
             }
         }
     }
@@ -170,4 +169,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: TO_FULL_ACCOUNT_VIEW, sender: nil)
     }
+    
+    
 }
