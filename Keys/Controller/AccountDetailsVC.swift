@@ -21,7 +21,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // Variables
     var account: UserAccount!
     var emailAddress: String!
-    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts")
+    
    
     
     
@@ -30,10 +30,11 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
-        print(account)
+        print(userRef)
     }
     
     @objc func editAccountDetails() {
