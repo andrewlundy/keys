@@ -14,6 +14,7 @@ struct UserAccount {
     let name: String
     let email: String
     let password: String
+    let notes: String?
     var ref: DatabaseReference?
     
     
@@ -21,6 +22,7 @@ struct UserAccount {
         self.name = name
         self.password = password
         self.email = email
+        self.notes = nil
         self.ref = nil
     }
     

@@ -51,6 +51,8 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    
     // Protocol Conformation Functions
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {

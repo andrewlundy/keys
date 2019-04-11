@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class EditAccountDetailsModal: UIViewController, UITextFieldDelegate {
 
@@ -18,9 +21,12 @@ class EditAccountDetailsModal: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
     
+    let currentAccount: UserAccount! = nil
+    let user = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(currentAccount.name)")
         emailTextField.becomeFirstResponder()
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -29,6 +35,7 @@ class EditAccountDetailsModal: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+        print(userRef)
         
     }
 

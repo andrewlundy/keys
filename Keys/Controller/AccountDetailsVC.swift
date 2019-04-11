@@ -23,6 +23,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var emailAddress: String!
     
    
+    @IBAction func unwindToAccountDetails(segue: UIStoryboardSegue) {}
     
     
     // Overrides
@@ -30,21 +31,49 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        
         let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
+        
+        
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
         print(userRef)
+        print(Auth.auth().currentUser!.uid)
+        
+        
+        userRef.observe(.value) { (snapshot) in
+            var newAccount: UserAccount!
+            guard let data = snapshot.value as? [String: AnyObject] else { return }
+            for child in data {
+                if let child = child.value as? [String: AnyObject] {
+                    let email = child["email"] as? String ?? ""
+                    let name = child["name"] as? String ?? ""
+                    let password = child["password"] as? String ?? ""
+                    newAccount = UserAccount(name: name, email: email, password: password)
+                }
+            }
+        }
+        tableView.reloadData()
     }
+    
+    
+   
     
     @objc func editAccountDetails() {
-        let modal = EditAccountDetailsModal()
-        modal.modalPresentationStyle = .custom
-        modal.modalTransitionStyle = .crossDissolve
-        
-        present(modal, animated: true)
+        performSegue(withIdentifier: SHOW_EDIT_DETAILS_VIEW, sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SHOW_EDIT_DETAILS_VIEW {
+            let popup = segue.destination as! EditDetailsViewController
+            popup.account = account
+            popup.modalPresentationStyle = .custom
+            popup.modalTransitionStyle = .crossDissolve
+            popup.userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser?.uid)/accounts/\(account.name)")
+        }
+    }
     
     // Protocol Conformation Functions
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,7 +96,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.detailValue.text = account.password
         } else {
             cell.detailLbl.text = "Notes"
-            cell.detailValue.text = ""
+            cell.detailValue.text = "Notes for account"
         }
         
         return cell
