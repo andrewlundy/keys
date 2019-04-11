@@ -34,18 +34,34 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
         print("EDIT ACCOUNT")
         let newId = Auth.auth().currentUser?.uid
         userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
-        print(userRef!)
-        print(Auth.auth().currentUser!.uid)
-        print(account.email)
+//        print(userRef!)
+//        print(Auth.auth().currentUser!.uid)
+//        print(account.email)
         
     }
     
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: UNWIND_TO_ACCOUNT_DETAILS, sender: nil)
+        print("Unwind perform")
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == UNWIND_TO_ACCOUNT_DETAILS {
+            let accountDetailsVC = segue.destination as! AccountDetailsVC
+            accountDetailsVC.account = account
+            accountDetailsVC.emailAddress = emailTextField.text
+            accountDetailsVC.tableView.reloadData()
+            print(accountDetailsVC.account.email)
+        }
+    }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         
         if emailTextField.text != nil {
-            let newEmail = emailTextField.text
+            let newEmail = emailTextField.text as! String
             userRef?.child("email").setValue(newEmail)
+            account.email = newEmail
         }
         
         

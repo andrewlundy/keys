@@ -8,9 +8,14 @@
 
 import Foundation
 
+// Segues
 let SEGUE_TO_USER_ACCOUNTS = "toUserAccountsVC"
 let SEGUE_TO_SIGNUP_VC = "toSignUpVC"
-let ACCOUNT_CELL_ID = "AccountCell"
 let TO_FULL_ACCOUNT_VIEW = "toFullAccountView"
+let UNWIND_TO_ACCOUNT_DETAILS = "unwindToAccountDetails"
+
+// Resuse IDs
+let ACCOUNT_CELL_ID = "AccountCell"
 let ACCOUNT_DETAIL_CELL_ID = "AccountDetailCell"
 let SHOW_EDIT_DETAILS_VIEW = "ShowEditAccountModalSegue"
+

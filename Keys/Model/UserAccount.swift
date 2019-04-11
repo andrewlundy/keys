@@ -11,10 +11,10 @@ import Firebase
 import FirebaseDatabase
 
 struct UserAccount {
-    let name: String
-    let email: String
-    let password: String
-    let notes: String?
+    var name: String
+    var email: String
+    var password: String
+    var notes: String?
     var ref: DatabaseReference?
     
     

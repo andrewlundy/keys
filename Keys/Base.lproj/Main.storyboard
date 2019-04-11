@@ -497,7 +497,8 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
-                                            <segue destination="vME-q0-hz7" kind="unwind" unwindAction="unwindToAccountDetailsWithSegue:" id="9xL-bh-chY"/>
+                                            <action selector="cancelBtnPressed:" destination="7O1-4h-VvE" eventType="touchUpInside" id="nJT-hN-sFd"/>
+                                            <segue destination="vME-q0-hz7" kind="unwind" identifier="unwindToAccountDetails" unwindAction="unwindToAccountDetailsWithSegue:" id="Fub-vE-9ze"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cws-ei-vna">

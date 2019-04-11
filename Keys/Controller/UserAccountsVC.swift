@@ -115,9 +115,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    @IBAction func unwindFromFullAccount(segue: UIStoryboardSegue) {
-        
-    }
+    
  
     
     // Protocol Conformation Functions
