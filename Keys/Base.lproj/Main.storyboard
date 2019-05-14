@@ -263,6 +263,7 @@
                         <outlet property="emailTxtField" destination="sai-n0-1FX" id="gCg-8b-Zeb"/>
                         <outlet property="nameTxtField" destination="SLP-yn-ig6" id="p2O-aA-lzS"/>
                         <outlet property="passwordTxtField" destination="aoa-lg-T6p" id="10A-rb-ACA"/>
+                        <segue destination="j7R-FJ-l1n" kind="show" identifier="toUserAccountsVC" id="Ndf-Kl-hwE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kv9-ep-ipm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -357,6 +358,7 @@
                                 </state>
                                 <connections>
                                     <action selector="logoutBtnPressed:" destination="j7R-FJ-l1n" eventType="touchUpInside" id="lKJ-9n-TZX"/>
+                                    <segue destination="ORL-8n-hOG" kind="unwind" unwindAction="unwindToLoginVCWithSegue:" id="7th-Ok-tuU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -393,6 +395,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYv-is-u2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ORL-8n-hOG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2754" y="587"/>
         </scene>
@@ -662,5 +665,8 @@
             <point key="canvasLocation" x="1022" y="133"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yUn-h8-zmV"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

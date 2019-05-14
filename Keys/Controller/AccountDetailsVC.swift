@@ -39,6 +39,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
+        
     
         
         

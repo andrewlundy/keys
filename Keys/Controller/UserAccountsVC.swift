@@ -95,7 +95,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func logoutBtnPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            navigationController?.popViewController(animated: true)
         } catch {
             debugPrint("No")
         }

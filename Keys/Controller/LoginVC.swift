@@ -73,9 +73,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {}
    
     
     // Protocol Conformation Functions

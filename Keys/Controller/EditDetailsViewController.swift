@@ -26,7 +26,7 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        accountNameLbl.text = account.name
         emailTextField.placeholder = account.email
         passwordTxtField.placeholder = account.password
         notesTxtField.text = account.notes
@@ -62,17 +62,23 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
             let newEmail = emailTextField.text as! String
             userRef?.child("email").setValue(newEmail)
             account.email = newEmail
-        }
-        
+        } 
         
         if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
             let newPass = passwordTxtField.placeholder
-            userRef?.child("password").setValue(newPass)
+            userRef?.child("password").setValue(newPass) 
         } else if passwordTxtField.text != nil {
-            let newPass = passwordTxtField.text
+            let newPass = passwordTxtField.text as! String
             userRef?.child("password").setValue(newPass)
+            account.password = newPass
         }
       
+        if notesTxtField.text == "" {
+            let newNotes = notesTxtField.text as! String
+            userRef?.child("notes").setValue(newNotes)
+            account.notes = newNotes
+        }
+        
     }
 
 
