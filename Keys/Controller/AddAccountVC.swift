@@ -29,10 +29,11 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         passwordTxtField.delegate = self
         accountNameTxtField.becomeFirstResponder()
         let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
-        
+
         self.view.addGestureRecognizer(tap)
 
     }
+    
     
    
     
