@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -20,6 +21,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseApp.configure()
+        let newRef = Firestore.firestore()
+        
         
         UITextField.appearance().tintColor = UIColor(red: 13/255, green: 62/255, blue: 108/255, alpha: 1)
         userTxtField.delegate = self

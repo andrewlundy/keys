@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6f-z6-obs">
-                                <rect key="frame" x="95.5" y="251" width="223" height="99"/>
+                                <rect key="frame" x="95.5" y="220" width="223" height="99"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2W-xt-fBI">
                                         <rect key="frame" x="0.0" y="0.0" width="223" height="22"/>
@@ -60,7 +60,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-MC-mgk">
-                                <rect key="frame" x="95.5" y="380" width="223" height="40"/>
+                                <rect key="frame" x="95.5" y="349" width="223" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ge-2B-YfI" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
@@ -93,7 +93,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8H-BH-V4k" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
-                                <rect key="frame" x="95.5" y="434" width="223" height="36"/>
+                                <rect key="frame" x="95.5" y="403" width="223" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="223" id="4fl-dI-wnH"/>
@@ -109,7 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="q6f-z6-obs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="55f-WX-l55"/>
-                            <constraint firstItem="q6f-z6-obs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="251" id="IXM-np-yzY"/>
+                            <constraint firstItem="q6f-z6-obs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="220" id="IXM-np-yzY"/>
                             <constraint firstItem="lxp-MC-mgk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MQr-Vl-oGM"/>
                             <constraint firstItem="B8H-BH-V4k" firstAttribute="top" secondItem="lxp-MC-mgk" secondAttribute="bottom" constant="14" id="URJ-dc-wPI"/>
                             <constraint firstItem="lxp-MC-mgk" firstAttribute="top" secondItem="q6f-z6-obs" secondAttribute="bottom" constant="30" id="eGp-Ne-vGQ"/>
