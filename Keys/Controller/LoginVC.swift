@@ -21,8 +21,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseApp.configure()
-        let newRef = Firestore.firestore()
         
         
         UITextField.appearance().tintColor = UIColor(red: 13/255, green: 62/255, blue: 108/255, alpha: 1)

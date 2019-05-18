@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -28,11 +29,51 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
 
     
+    // Firestore Variables
+    let fireStoreDb = Firestore.firestore()
+    var newRef: DocumentReference? = nil
+    
+    
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-
+        
+        // Setting data
+//        fireStoreDb.collection("users").document("\(userID!)").setData([
+//            "firstName": "Alfred",
+//            "lastName": "Lundy",
+//            "UID": "\(userID!)"
+//        ]) { (error) in
+//            if let error = error {
+//                print("Error adding document: \(error)")
+//            } else {
+//                print("Adding document.")
+//            }
+//        }
+        
+        // Reading data
+        fireStoreDb.collection("users").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Facebook").setData([
+            "accountEmail": "andrewlundy@testing.com"
+        ]) { (error) in
+            if let error = error {
+                print("Error adding document: \(error)")
+          } else {
+                print("Adding document.")
+            }
+        }
+        
+        
         usernameLbl.target = nil
         tableView.delegate = self
         tableView.dataSource = self
