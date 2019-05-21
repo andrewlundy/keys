@@ -78,9 +78,11 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             
-            for child in data {
-                print(child)
-            }
+            print("Data: \(data)")
+            
+            guard let userName = data["userName"] else { return }
+            
+            print("USER: \(userName)")
             
         }
         
