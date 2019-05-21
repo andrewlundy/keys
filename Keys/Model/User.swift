@@ -13,8 +13,9 @@ struct User {
     var password: String?
     var notes: String?
     
+    
     init?(dictionary: [String: Any]) {
-        self.name = dictionary["name"] as? String
+        self.name = dictionary["userName"] as? String
         self.email = dictionary["email"] as? String
         self.password = dictionary["password"] as? String
         self.notes = dictionary[""] as? String

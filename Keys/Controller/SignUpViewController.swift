@@ -59,7 +59,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: emailTxt, password: passwordTxt, completion: { (authResult, error) in
                 if error == nil {
                     let username = self.nameTxtField.text
-//                    self.ref.child("users").child(Auth.auth().currentUser!.uid).setValue(["username": username])
                     self.fireStoreDb.collection("users").document("\(Auth.auth().currentUser!.uid)").setData([
                         "userName": username,
                         "UID": Auth.auth().currentUser!.uid

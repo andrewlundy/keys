@@ -20,7 +20,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var usernameLbl: UIBarButtonItem!
     
     
-    
     // Variables
     var ref = Database.database().reference()
     let userID = Auth.auth().currentUser?.uid
@@ -40,69 +39,16 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.tableFooterView = UIView()
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
         newRef.getDocument { (document, error) in
-            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) in
+            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> User? in
                 return User(dictionary: data)
-                
-            })
-        }) {
-            print("Username: \(newUser.name)")
-            self.usernameLbl.title = newUser.name
-        } else {
-            print("Document does not exist.")
-        }
-           
-            
-            
-//            if let user = document.flatMap({
-//                print(document?.data())
-//                $0.data().flatMap({ (data) in
-//                    return User(dictionary: data)
-//                })
-//            }) {
-//                print("User: \(user)")
-//            } else {
-//                print("Document does not exist.")
-//            }
+                })
+            })  {
+                self.usernameLbl.title = newUser.name
+            } else {
+                print("Document does not exist.")
+            }
         }
        
-    
-        
-        // Add data
-//        fireStoreDb.collection("users").document("\(userID!)").setData([
-//            "firstName": "Alfred",
-//            "lastName": "Lundy",
-//            "UID": "\(userID!)"
-//        ]) { (error) in
-//            if let error = error {
-//                print("Error adding document: \(error)")
-//            } else {
-//                print("Adding document.")
-//            }
-//        }
-//        
-//        // Reading data
-//        fireStoreDb.collection("users").getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
-//
-//        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Facebook").setData([
-//            "accountEmail": "andrewlundy@testing.com"
-//        ]) { (error) in
-//            if let error = error {
-//                print("Error adding document: \(error)")
-//          } else {
-//                print("Adding document.")
-//            }
-//        }
-        
-    
-        
         usernameLbl.target = nil
         tableView.delegate = self
         tableView.dataSource = self
@@ -117,18 +63,28 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(noAccountsLbl)
         
         
-        
-        // Update username label
-//        ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            let username = value?["username"] as? String ?? ""
-//            self.usernameLbl.title = username
-//        }
-        
-        
-        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        // Listen for change of value in the user's account
+        fireStoreDb.collection("users").document("\(userID!)").addSnapshotListener { (snapshot, error) in
+            guard let document = snapshot else {
+                print("There was an error fetching document: \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document was empty")
+                return
+            }
+            
+            for child in data {
+                print(child)
+            }
+            
+        }
+        
+ 
         
         // Listen for change of value in the user's accounts
         userRef.observe(.value) { (snapshot) in
