@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -21,6 +22,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // Variables
     var ref = Database.database().reference()
     
+    // Firestore Variables
+    let fireStoreDb = Firestore.firestore()
     
     // Overrides
     override func viewDidLoad() {
@@ -52,10 +55,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
+            
             Auth.auth().signIn(withEmail: emailTxt, password: passwordTxt, completion: { (authResult, error) in
                 if error == nil {
                     let username = self.nameTxtField.text
-                    self.ref.child("users").child(Auth.auth().currentUser!.uid).setValue(["username": username])
+//                    self.ref.child("users").child(Auth.auth().currentUser!.uid).setValue(["username": username])
+                    self.fireStoreDb.collection("users").document("\(Auth.auth().currentUser!.uid)").setData([
+                        "userName": username,
+                        "UID": Auth.auth().currentUser!.uid
+                        ], completion: { (error) in
+                            if let error = error {
+                                print("Error adding document: \(error)")
+                            } else {
+                                print("New user added.")
+                            }
+                    })
+                    
+                    
                     self.activitySpinner.isHidden = true
                     self.activitySpinner.stopAnimating()
                     self.nameTxtField.text = ""

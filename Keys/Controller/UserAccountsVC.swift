@@ -31,15 +31,43 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Firestore Variables
     let fireStoreDb = Firestore.firestore()
-    var newRef: DocumentReference? = nil
+    
     
     
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        let newRef = fireStoreDb.collection("users").document("\(userID!)")
+        newRef.getDocument { (document, error) in
+            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) in
+                return User(dictionary: data)
+                
+            })
+        }) {
+            print("Username: \(newUser.name)")
+            self.usernameLbl.title = newUser.name
+        } else {
+            print("Document does not exist.")
+        }
+           
+            
+            
+//            if let user = document.flatMap({
+//                print(document?.data())
+//                $0.data().flatMap({ (data) in
+//                    return User(dictionary: data)
+//                })
+//            }) {
+//                print("User: \(user)")
+//            } else {
+//                print("Document does not exist.")
+//            }
+        }
+       
+    
         
-        // Setting data
+        // Add data
 //        fireStoreDb.collection("users").document("\(userID!)").setData([
 //            "firstName": "Alfred",
 //            "lastName": "Lundy",
@@ -51,28 +79,29 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                print("Adding document.")
 //            }
 //        }
+//        
+//        // Reading data
+//        fireStoreDb.collection("users").getDocuments { (querySnapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+//            }
+//        }
+//
+//        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Facebook").setData([
+//            "accountEmail": "andrewlundy@testing.com"
+//        ]) { (error) in
+//            if let error = error {
+//                print("Error adding document: \(error)")
+//          } else {
+//                print("Adding document.")
+//            }
+//        }
         
-        // Reading data
-        fireStoreDb.collection("users").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
-        
-        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Facebook").setData([
-            "accountEmail": "andrewlundy@testing.com"
-        ]) { (error) in
-            if let error = error {
-                print("Error adding document: \(error)")
-          } else {
-                print("Adding document.")
-            }
-        }
-        
+    
         
         usernameLbl.target = nil
         tableView.delegate = self
@@ -90,11 +119,13 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         // Update username label
-        ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            self.usernameLbl.title = username
-        }
+//        ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            let username = value?["username"] as? String ?? ""
+//            self.usernameLbl.title = username
+//        }
+        
+        
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -210,3 +241,5 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 }
+
+

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260E2A03223682EA0002E4AD /* UserAccountsVC.swift */; };
+		2617125622910C4700A8524D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2617125522910C4700A8524D /* User.swift */; };
 		262FB0B52255B13E00D3EE3A /* EditAccountDetailsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262FB0B32255B13E00D3EE3A /* EditAccountDetailsModal.swift */; };
 		262FB0B62255B13E00D3EE3A /* EditAccountDetailsModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262FB0B42255B13E00D3EE3A /* EditAccountDetailsModal.xib */; };
 		263B109B223EBDB8008C7DB7 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B109A223EBDB8008C7DB7 /* AccountCell.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		131C3A8F72AC4063E02A0265 /* Pods-Keys.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.release.xcconfig"; sourceTree = "<group>"; };
 		260E2A03223682EA0002E4AD /* UserAccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountsVC.swift; sourceTree = "<group>"; };
+		2617125522910C4700A8524D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		262FB0B32255B13E00D3EE3A /* EditAccountDetailsModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountDetailsModal.swift; sourceTree = "<group>"; };
 		262FB0B42255B13E00D3EE3A /* EditAccountDetailsModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditAccountDetailsModal.xib; path = ../Controller/EditAccountDetailsModal.xib; sourceTree = "<group>"; };
 		263B109A223EBDB8008C7DB7 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				2671042F22345E7400BC83CC /* UserAccount.swift */,
+				2617125522910C4700A8524D /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				269179A02233509000208CD8 /* LoginVC.swift in Sources */,
 				26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */,
 				263B109B223EBDB8008C7DB7 /* AccountCell.swift in Sources */,
+				2617125622910C4700A8524D /* User.swift in Sources */,
 				2671043022345E7400BC83CC /* UserAccount.swift in Sources */,
 				260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */,
 				266BD25B223B14D90008D44D /* SignUpViewController.swift in Sources */,
