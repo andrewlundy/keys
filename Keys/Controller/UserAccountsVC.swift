@@ -38,10 +38,12 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
+        
+        // Update username label
         newRef.getDocument { (document, error) in
-            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> User? in
-                return User(dictionary: data)
-                })
+            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> FirestoreUser? in
+                return FirestoreUser(dictionary: data)
+            })
             })  {
                 self.usernameLbl.title = newUser.name
             } else {
@@ -49,6 +51,8 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
        
+      
+        
         usernameLbl.target = nil
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,26 +71,28 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         // Listen for change of value in the user's account
-        fireStoreDb.collection("users").document("\(userID!)").addSnapshotListener { (snapshot, error) in
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").addSnapshotListener { (snapshot, error) in
             guard let document = snapshot else {
                 print("There was an error fetching document: \(error!)")
                 return
             }
-            
-            guard let data = document.data() else {
-                print("Document was empty")
-                return
-            }
-            
-            print("Data: \(data)")
-            
-            guard let userName = data["userName"] else { return }
-            
-            print("USER: \(userName)")
-            
         }
         
- 
+        
+        fireStoreDb.collection("users").document(userID!).collection("Accounts").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in snapshot!.documents {
+                    if let childData = document.data() as? [String: Any] {
+                        let name = childData["accountName"] as? String ?? ""
+                        let email = childData["email"] as? String ?? ""
+                        let password = childData["password"] as? String ?? ""
+                        let newAccount = UserAccount(name: name, email: email, password: password)                    }
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
         
         // Listen for change of value in the user's accounts
         userRef.observe(.value) { (snapshot) in

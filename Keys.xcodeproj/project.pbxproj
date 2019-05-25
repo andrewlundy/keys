@@ -29,6 +29,7 @@
 		268B3D142249BC3E00FCB9FE /* ResetPasswordModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268B3D122249BC3E00FCB9FE /* ResetPasswordModal.xib */; };
 		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
 		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
+		26FC61E32299E1E300CC81F4 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC61E22299E1E300CC81F4 /* NewUser.swift */; };
 		26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		268B3D122249BC3E00FCB9FE /* ResetPasswordModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordModal.xib; sourceTree = "<group>"; };
 		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
+		26FC61E22299E1E300CC81F4 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsVC.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
 		F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 			children = (
 				2671042F22345E7400BC83CC /* UserAccount.swift */,
 				2617125522910C4700A8524D /* User.swift */,
+				26FC61E22299E1E300CC81F4 /* NewUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				269179A02233509000208CD8 /* LoginVC.swift in Sources */,
 				26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */,
 				263B109B223EBDB8008C7DB7 /* AccountCell.swift in Sources */,
+				26FC61E32299E1E300CC81F4 /* NewUser.swift in Sources */,
 				2617125622910C4700A8524D /* User.swift in Sources */,
 				2671043022345E7400BC83CC /* UserAccount.swift in Sources */,
 				260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */,

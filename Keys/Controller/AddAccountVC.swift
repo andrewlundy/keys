@@ -21,6 +21,8 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     // Variables
     let ref = Database.database().reference()
     
+    let fireStoreDb = Firestore.firestore()
+    
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +31,12 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         passwordTxtField.delegate = self
         accountNameTxtField.becomeFirstResponder()
         let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
-
         self.view.addGestureRecognizer(tap)
 
     }
     
     
    
-    
-    
     // Actions
     @IBAction func addAccountBtnPressed(_ sender: Any) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -45,14 +44,21 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         guard let email = emailTxtField.text, emailTxtField.text != nil else { return }
         guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
         
-        self.ref.child("users/\(userId)/accounts/\(accountName)/name").setValue(accountName)
-        self.ref.child("users/\(userId)/accounts/\(accountName)/email").setValue(email)
-        self.ref.child("users/\(userId)/accounts/\(accountName)/password").setValue(password)
+        fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).setData([
+            "email": email,
+            "password": password
+        ]) { error in
+            if let error = error {
+                print("Error writing to document: \(error)")
+            } else {
+                print("Write to document was successful.")
+            }
+        }
+        
     
         accountNameTxtField.text = ""
         emailTxtField.text = ""
         passwordTxtField.text = ""
-        
         accountNameTxtField.becomeFirstResponder()
     }
     
