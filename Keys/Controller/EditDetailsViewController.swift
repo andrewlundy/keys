@@ -53,8 +53,6 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        
-        
         if emailTextField.text != nil {
             let newEmail = emailTextField.text! as String
             fireRef?.updateData ([

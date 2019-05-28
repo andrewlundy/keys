@@ -86,6 +86,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     for document in snapshot!.documents {
                         if let childData = document.data() as? [String: Any] {
                             let name = childData["accountName"] as? String ?? ""
+                            let username = childData["username"] as? String ?? ""
                             let email = childData["email"] as? String ?? ""
                             let password = childData["password"] as? String ?? ""
                             let newAccount = UserAccount(name: name, email: email, password: password)
