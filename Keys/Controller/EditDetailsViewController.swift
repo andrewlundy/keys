@@ -15,6 +15,8 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
 
     var account: UserAccount! = nil
     var userRef: DatabaseReference?
+    var firestoreDb = Firestore.firestore()
+    var fireRef: DocumentReference?
     
     
     @IBOutlet weak var accountNameLbl: UILabel!
@@ -31,18 +33,13 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
         passwordTxtField.placeholder = account.password
         notesTxtField.text = account.notes
         emailTextField.becomeFirstResponder()
-        print("EDIT ACCOUNT")
         let newId = Auth.auth().currentUser?.uid
         userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
-//        print(userRef!)
-//        print(Auth.auth().currentUser!.uid)
-//        print(account.email)
-        
+        fireRef = firestoreDb.collection("users").document("\(newId!)").collection("Accounts").document(account.name)
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: UNWIND_TO_ACCOUNT_DETAILS, sender: nil)
-        print("Unwind perform")
         
     }
     
@@ -52,33 +49,69 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
             accountDetailsVC.account = account
             accountDetailsVC.emailAddress = emailTextField.text
             accountDetailsVC.tableView.reloadData()
-            print(accountDetailsVC.account.email)
         }
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         
+        
         if emailTextField.text != nil {
-            let newEmail = emailTextField.text as! String
-            userRef?.child("email").setValue(newEmail)
+            let newEmail = emailTextField.text! as String
+            fireRef?.updateData ([
+                "email": newEmail
+            ])
             account.email = newEmail
-        } 
+        }
         
         if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
-            let newPass = passwordTxtField.placeholder
-            userRef?.child("password").setValue(newPass) 
+            let newPass = passwordTxtField.placeholder! as String
+            fireRef?.updateData([
+                "password": newPass
+            ]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Document updated!")
+                }
+            }
+            account.password = newPass
         } else if passwordTxtField.text != nil {
-            let newPass = passwordTxtField.text as! String
-            userRef?.child("password").setValue(newPass)
+            let newPass = passwordTxtField.text! as String
+            fireRef?.updateData([
+                "password": newPass
+            ])
             account.password = newPass
         }
-      
+        
         if notesTxtField.text == "" {
-            let newNotes = notesTxtField.text as! String
-            userRef?.child("notes").setValue(newNotes)
+            let newNotes = notesTxtField.text! as String
+            fireRef?.updateData([
+                "notes" : newNotes
+            ])
             account.notes = newNotes
         }
         
+//        if emailTextField.text != nil {
+//            let newEmail = emailTextField.text as! String
+//            userRef?.child("email").setValue(newEmail)
+//            account.email = newEmail
+//        }
+//
+//        if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
+//            let newPass = passwordTxtField.placeholder
+//            userRef?.child("password").setValue(newPass)
+//        } else if passwordTxtField.text != nil {
+//            let newPass = passwordTxtField.text! as String
+//            userRef?.child("password").setValue(newPass)
+//            account.password = newPass
+//        }
+//
+//        if notesTxtField.text == "" {
+//            let newNotes = notesTxtField.text! as String
+//            userRef?.child("notes").setValue(newNotes)
+//            account.notes = newNotes
+//        }
+        dismiss(animated: true, completion: nil)
     }
 
 

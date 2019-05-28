@@ -17,7 +17,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var accountNameTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
-    
+    @IBOutlet weak var usernameTxtField: UITextField!
     // Variables
     let ref = Database.database().reference()
     
@@ -43,9 +43,11 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         guard let accountName = accountNameTxtField.text, accountNameTxtField.text !=  nil else { return }
         guard let email = emailTxtField.text, emailTxtField.text != nil else { return }
         guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
+        guard let username = usernameTxtField.text, usernameTxtField.text != nil else { return }
         
         fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).setData([
             "accountName": accountName,
+            "username": username,
             "email": email,
             "password": password
         ]) { error in

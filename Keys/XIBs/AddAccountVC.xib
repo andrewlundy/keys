@@ -15,6 +15,7 @@
                 <outlet property="accountNameTxtField" destination="psb-IC-Q6L" id="73A-oe-cen"/>
                 <outlet property="emailTxtField" destination="HN6-Tf-O0t" id="VPG-7U-isH"/>
                 <outlet property="passwordTxtField" destination="Ygb-u9-cPn" id="1a5-WZ-EMx"/>
+                <outlet property="usernameTxtField" destination="bcG-yk-qD5" id="tBO-y4-5uJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,10 +25,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osn-8N-GJ9" customClass="ModalView" customModule="Keys" customModuleProvider="target">
-                    <rect key="frame" x="67" y="188" width="280" height="320"/>
+                    <rect key="frame" x="67" y="160.5" width="280" height="375"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiF-IN-nNy">
+                            <rect key="frame" x="247" y="8" width="25" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="error"/>
+                            <connections>
+                                <action selector="closeBtnPressed:" destination="-1" eventType="touchUpInside" id="eK1-aw-B4h"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a New Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5s-fD-0rI">
+                            <rect key="frame" x="41" y="28" width="198" height="29"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-89-Ntx" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
+                            <rect key="frame" x="28" y="328" width="223" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <state key="normal" title="Add Account"/>
+                            <connections>
+                                <action selector="addAccountBtnPressed:" destination="-1" eventType="touchUpInside" id="izs-5w-8i2"/>
+                            </connections>
+                        </button>
                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ueI-0G-KV3">
-                            <rect key="frame" x="28" y="93" width="223" height="157"/>
+                            <rect key="frame" x="29" y="80" width="223" height="215"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="account name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="psb-IC-Q6L">
@@ -48,8 +72,26 @@
                                         <constraint firstAttribute="height" constant="2" id="Zsv-g0-cVv"/>
                                     </constraints>
                                 </view>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HN6-Tf-O0t">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcG-yk-qD5">
                                     <rect key="frame" x="0.0" y="58" width="223" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="4Ic-ir-mbT"/>
+                                        <constraint firstAttribute="width" constant="223" id="VJk-7E-F69"/>
+                                    </constraints>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits" textContentType="password"/>
+                                </textField>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQC-UW-cuV">
+                                    <rect key="frame" x="0.0" y="97" width="223" height="2"/>
+                                    <color key="backgroundColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="223" id="e0j-0c-9mN"/>
+                                        <constraint firstAttribute="height" constant="2" id="k3g-3L-sLa"/>
+                                    </constraints>
+                                </view>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HN6-Tf-O0t">
+                                    <rect key="frame" x="0.0" y="116" width="223" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="046-YK-rnR"/>
                                         <constraint firstAttribute="width" constant="223" id="Rak-cn-2jn"/>
@@ -59,7 +101,7 @@
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OW-KB-XMS">
-                                    <rect key="frame" x="0.0" y="97" width="223" height="2"/>
+                                    <rect key="frame" x="0.0" y="155" width="223" height="2"/>
                                     <color key="backgroundColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="223" id="2B8-8M-chl"/>
@@ -67,7 +109,7 @@
                                     </constraints>
                                 </view>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ygb-u9-cPn">
-                                    <rect key="frame" x="0.0" y="116" width="223" height="22"/>
+                                    <rect key="frame" x="0.0" y="174" width="223" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="223" id="L4q-5d-UWN"/>
                                         <constraint firstAttribute="height" constant="22" id="irx-x4-jft"/>
@@ -77,7 +119,7 @@
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57T-Nn-35h">
-                                    <rect key="frame" x="0.0" y="155" width="223" height="2"/>
+                                    <rect key="frame" x="0.0" y="213" width="223" height="2"/>
                                     <color key="backgroundColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="2" id="Qgj-tA-gTD"/>
@@ -87,34 +129,11 @@
                             </subviews>
                             <viewLayoutGuide key="safeArea" id="rRt-MT-dQf"/>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7V-89-Ntx" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
-                            <rect key="frame" x="28" y="273" width="223" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                            <state key="normal" title="Add Account"/>
-                            <connections>
-                                <action selector="addAccountBtnPressed:" destination="-1" eventType="touchUpInside" id="izs-5w-8i2"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiF-IN-nNy">
-                            <rect key="frame" x="247" y="8" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="error"/>
-                            <connections>
-                                <action selector="closeBtnPressed:" destination="-1" eventType="touchUpInside" id="eK1-aw-B4h"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a New Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5s-fD-0rI">
-                            <rect key="frame" x="41" y="28" width="198" height="29"/>
-                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="f5s-fD-0rI" firstAttribute="top" secondItem="Osn-8N-GJ9" secondAttribute="top" constant="28" id="JNc-86-a2y"/>
-                        <constraint firstAttribute="height" constant="320" id="MEg-3x-bpW"/>
+                        <constraint firstAttribute="height" constant="375" id="MEg-3x-bpW"/>
                         <constraint firstAttribute="width" constant="280" id="PoM-YY-Z0e"/>
                         <constraint firstItem="f5s-fD-0rI" firstAttribute="centerX" secondItem="Osn-8N-GJ9" secondAttribute="centerX" id="ZoD-rP-FeF"/>
                     </constraints>

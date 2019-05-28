@@ -31,18 +31,12 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        
         let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
-        
-        
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
         
-    
-        
-        
+
         userRef.observe(.value) { (snapshot) in
             var newAccount: UserAccount!
             guard let data = snapshot.value as? [String: AnyObject] else { return }
