@@ -89,7 +89,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                             let username = childData["username"] as? String ?? ""
                             let email = childData["email"] as? String ?? ""
                             let password = childData["password"] as? String ?? ""
-                            let newAccount = UserAccount(name: name, email: email, password: password)
+                            let newAccount = UserAccount(name: name, email: email, password: password, username: username)
                             newAccounts.append(newAccount)
                         }
                     }

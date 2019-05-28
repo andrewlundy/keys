@@ -35,7 +35,6 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
-        
         tableView.reloadData()
     }
     
@@ -52,7 +51,8 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             popup.account = account
             popup.modalPresentationStyle = .custom
             popup.modalTransitionStyle = .crossDissolve
-            popup.userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser?.uid)/accounts/\(account.name)")
+//            popup.userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser?.uid)/accounts/\(account.name)")
+            popup.fireRef = Firestore.firestore().collection("users").document("\(Auth.auth().currentUser!.uid)").collection("Accounts").document(account.name)
         }
     }
     
@@ -75,6 +75,9 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else if indexPath.row == 1 {
             cell.detailLbl.text = "Password"
             cell.detailValue.text = account.password
+        } else if indexPath.row == 2 {
+            cell.detailLbl.text = "Username"
+            cell.detailValue.text = account.username
         } else {
             cell.detailLbl.text = "Notes"
             cell.detailValue.text = "Notes for account"
@@ -82,11 +85,4 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return cell
     }
-
-    
-   
-    
-    
-  
-
 }

@@ -14,7 +14,7 @@ import FirebaseAuth
 class EditDetailsViewController: UIViewController, UITextFieldDelegate {
 
     var account: UserAccount! = nil
-    var userRef: DatabaseReference?
+//    var userRef: DatabaseReference?
     var firestoreDb = Firestore.firestore()
     var fireRef: DocumentReference?
     
@@ -24,6 +24,7 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var notesTxtField: UITextView!
+    @IBOutlet weak var usernameTxtField: UITextField!
     
     
     override func viewDidLoad() {
@@ -32,9 +33,10 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
         emailTextField.placeholder = account.email
         passwordTxtField.placeholder = account.password
         notesTxtField.text = account.notes
+        usernameTxtField.placeholder = account.username
         emailTextField.becomeFirstResponder()
         let newId = Auth.auth().currentUser?.uid
-        userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
+//        userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
         fireRef = firestoreDb.collection("users").document("\(newId!)").collection("Accounts").document(account.name)
     }
     
@@ -53,25 +55,32 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
+       
+        // Check and update email
         if emailTextField.text != nil {
             let newEmail = emailTextField.text! as String
-            fireRef?.updateData ([
-                "email": newEmail
+            fireRef?.updateData([
+                "email" : newEmail
             ])
             account.email = newEmail
         }
         
+        if emailTextField.text == nil && emailTextField.placeholder != nil || emailTextField.text == "" && emailTextField.placeholder != nil {
+            let oldEmail = emailTextField.placeholder! as String
+            fireRef?.updateData([
+                "email": emailTextField.placeholder! as String
+            ])
+            account.email = oldEmail
+        }
+        
+   
+        
+        // Check and update password
         if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
             let newPass = passwordTxtField.placeholder! as String
             fireRef?.updateData([
                 "password": newPass
-            ]) { error in
-                if let error = error {
-                    print("Error updating document: \(error)")
-                } else {
-                    print("Document updated!")
-                }
-            }
+            ])
             account.password = newPass
         } else if passwordTxtField.text != nil {
             let newPass = passwordTxtField.text! as String
@@ -81,6 +90,8 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
             account.password = newPass
         }
         
+        
+        // Check and update notes
         if notesTxtField.text == "" {
             let newNotes = notesTxtField.text! as String
             fireRef?.updateData([
@@ -109,7 +120,7 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
 //            userRef?.child("notes").setValue(newNotes)
 //            account.notes = newNotes
 //        }
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: UNWIND_TO_ACCOUNT_DETAILS, sender: nil)
     }
 
 
