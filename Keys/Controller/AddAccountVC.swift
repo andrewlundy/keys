@@ -45,6 +45,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
         
         fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).setData([
+            "accountName": accountName,
             "email": email,
             "password": password
         ]) { error in
