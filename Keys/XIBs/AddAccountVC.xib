@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAccountVC" customModule="Keys" customModuleProvider="target">
             <connections>
                 <outlet property="accountNameTxtField" destination="psb-IC-Q6L" id="73A-oe-cen"/>
+                <outlet property="addAccountBtn" destination="u7V-89-Ntx" id="rIS-3n-Kq6"/>
                 <outlet property="emailTxtField" destination="HN6-Tf-O0t" id="VPG-7U-isH"/>
                 <outlet property="passwordTxtField" destination="Ygb-u9-cPn" id="1a5-WZ-EMx"/>
                 <outlet property="usernameTxtField" destination="bcG-yk-qD5" id="tBO-y4-5uJ"/>

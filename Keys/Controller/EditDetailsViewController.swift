@@ -74,6 +74,19 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
         }
         
    
+        // Check and update username
+        if usernameTxtField.text != nil {
+            let newUsername = usernameTxtField.text!
+            fireRef?.updateData([
+                "username" : newUsername
+            ])
+            account.username = newUsername
+        } else {
+            fireRef?.updateData([
+                "username" : "No username"
+            ])
+        }
+        
         
         // Check and update password
         if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {

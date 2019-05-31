@@ -28,10 +28,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTxtField.delegate = self
-        emailTxtField.delegate = self
-        passwordTxtField.delegate = self
-        activitySpinner.isHidden = true
+        updateView()
     }
     
     // Actions
@@ -86,6 +83,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         
+    }
+    
+    func updateView() {
+        nameTxtField.delegate = self
+        emailTxtField.delegate = self
+        passwordTxtField.delegate = self
+        activitySpinner.isHidden = true
+        let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
+        self.view.addGestureRecognizer(tap)
     }
     
     // Protocol Conformation Functions
