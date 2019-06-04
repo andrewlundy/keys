@@ -206,14 +206,14 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lwR-Jk-epy">
-                                <rect key="frame" x="95.5" y="429" width="223" height="92"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lwR-Jk-epy">
+                                <rect key="frame" x="101" y="370" width="212" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAH-tJ-gxg" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="223" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="UnA-Wc-azU"/>
-                                            <constraint firstAttribute="width" constant="223" id="fZi-xt-YOO"/>
+                                            <constraint firstAttribute="width" constant="100" id="fZi-xt-YOO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Continue">
@@ -224,10 +224,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncp-UH-AKp" customClass="RoundedBlueBtn" customModule="Keys" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="223" height="40"/>
+                                        <rect key="frame" x="112" y="0.0" width="100" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="KlL-fF-UTl"/>
-                                            <constraint firstAttribute="width" constant="223" id="tB1-Qn-m5G"/>
+                                            <constraint firstAttribute="width" constant="100" id="tB1-Qn-m5G"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Cancel">
@@ -241,15 +241,15 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Hdl-jz-jol">
-                                <rect key="frame" x="188.5" y="385.5" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="235.5" width="37" height="37"/>
                                 <color key="color" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lwR-Jk-epy" firstAttribute="top" secondItem="T7c-9n-foF" secondAttribute="bottom" constant="84" id="0xE-HO-oBC"/>
+                            <constraint firstItem="lwR-Jk-epy" firstAttribute="top" secondItem="T7c-9n-foF" secondAttribute="bottom" constant="25" id="0xE-HO-oBC"/>
                             <constraint firstItem="Hdl-jz-jol" firstAttribute="centerX" secondItem="lgU-qQ-CJE" secondAttribute="centerX" id="3PV-wE-X7K"/>
-                            <constraint firstItem="Hdl-jz-jol" firstAttribute="centerY" secondItem="lgU-qQ-CJE" secondAttribute="centerY" id="4dl-a7-Wqy"/>
+                            <constraint firstItem="Hdl-jz-jol" firstAttribute="centerY" secondItem="lgU-qQ-CJE" secondAttribute="centerY" constant="-150" id="4dl-a7-Wqy"/>
                             <constraint firstItem="RFA-J1-1e5" firstAttribute="centerX" secondItem="lgU-qQ-CJE" secondAttribute="centerX" id="8He-AC-EdQ"/>
                             <constraint firstItem="lwR-Jk-epy" firstAttribute="centerX" secondItem="lgU-qQ-CJE" secondAttribute="centerX" id="Myk-Ob-NTn"/>
                             <constraint firstItem="T7c-9n-foF" firstAttribute="top" secondItem="RFA-J1-1e5" secondAttribute="bottom" constant="60" id="Q0Z-Zf-GNw"/>
@@ -698,7 +698,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yUn-h8-zmV"/>
+        <segue reference="Ndf-Kl-hwE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
