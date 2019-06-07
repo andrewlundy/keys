@@ -51,7 +51,6 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             popup.account = account
             popup.modalPresentationStyle = .custom
             popup.modalTransitionStyle = .crossDissolve
-//            popup.userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser?.uid)/accounts/\(account.name)")
             popup.fireRef = Firestore.firestore().collection("users").document("\(Auth.auth().currentUser!.uid)").collection("Accounts").document(account.name)
         }
     }
@@ -84,5 +83,9 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

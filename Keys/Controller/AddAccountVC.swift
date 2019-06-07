@@ -32,6 +32,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         updateView()
     }
     
+
    
     // Actions
     @IBAction func addAccountBtnPressed(_ sender: Any) {
@@ -94,10 +95,12 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         passwordTxtField.delegate = self
         usernameTxtField.delegate = self
         accountNameTxtField.becomeFirstResponder()
-        let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
-        self.view.addGestureRecognizer(tap)
         self.addAccountBtn.cornerRadius = 14
         
+    }
+    
+    @objc func dismissModal() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
