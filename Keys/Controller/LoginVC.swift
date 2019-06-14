@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -20,7 +21,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let tap = UITapGestureRecognizer(target: self.view, action: Selector("endEditing:"))
+        self.view.addGestureRecognizer(tap)
         UITextField.appearance().tintColor = UIColor(red: 13/255, green: 62/255, blue: 108/255, alpha: 1)
         userTxtField.delegate = self
         passwordTxtField.delegate = self

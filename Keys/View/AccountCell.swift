@@ -14,10 +14,11 @@ class AccountCell: UITableViewCell {
     @IBOutlet weak var accountNameLbl: UILabel!
     @IBOutlet weak var emailAddressLbl: UILabel!
     @IBOutlet weak var passwordLbl: UILabel!
+    @IBOutlet weak var accountImage: SocialIcon!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
+        accountImage.image = UIImage(named: "blankUserIcon")
         
     }
 

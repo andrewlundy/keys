@@ -15,10 +15,11 @@ class ResetPasswordModal: UIViewController {
 
     // Outlets
     @IBOutlet weak var emailTxtField: UITextField!
+    @IBOutlet weak var resetPassBtn: RoundedBlueBtn!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateView()
     }
     
     
@@ -40,4 +41,10 @@ class ResetPasswordModal: UIViewController {
             }
         }
     }
+    
+    func updateView() {
+        emailTxtField.becomeFirstResponder()
+        self.resetPassBtn.cornerRadius = 14
+    }
+    
 }

@@ -14,7 +14,9 @@ import FirebaseAuth
 class EditDetailsViewController: UIViewController, UITextFieldDelegate {
 
     var account: UserAccount! = nil
-    var userRef: DatabaseReference?
+//    var userRef: DatabaseReference?
+    var firestoreDb = Firestore.firestore()
+    var fireRef: DocumentReference?
     
     
     @IBOutlet weak var accountNameLbl: UILabel!
@@ -22,6 +24,7 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var notesTxtField: UITextView!
+    @IBOutlet weak var usernameTxtField: UITextField!
     
     
     override func viewDidLoad() {
@@ -30,19 +33,15 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
         emailTextField.placeholder = account.email
         passwordTxtField.placeholder = account.password
         notesTxtField.text = account.notes
+        usernameTxtField.placeholder = account.username
         emailTextField.becomeFirstResponder()
-        print("EDIT ACCOUNT")
         let newId = Auth.auth().currentUser?.uid
-        userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
-//        print(userRef!)
-//        print(Auth.auth().currentUser!.uid)
-//        print(account.email)
-        
+//        userRef = Database.database().reference(withPath: "users/\(newId!)/accounts/\(account.name)")
+        fireRef = firestoreDb.collection("users").document("\(newId!)").collection("Accounts").document(account.name)
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: UNWIND_TO_ACCOUNT_DETAILS, sender: nil)
-        print("Unwind perform")
         
     }
     
@@ -52,33 +51,94 @@ class EditDetailsViewController: UIViewController, UITextFieldDelegate {
             accountDetailsVC.account = account
             accountDetailsVC.emailAddress = emailTextField.text
             accountDetailsVC.tableView.reloadData()
-            print(accountDetailsVC.account.email)
         }
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        
+       
+        // Check and update email
         if emailTextField.text != nil {
-            let newEmail = emailTextField.text as! String
-            userRef?.child("email").setValue(newEmail)
+            let newEmail = emailTextField.text! as String
+            fireRef?.updateData([
+                "email" : newEmail
+            ])
             account.email = newEmail
-        } 
+        }
         
+        if emailTextField.text == nil && emailTextField.placeholder != nil || emailTextField.text == "" && emailTextField.placeholder != nil {
+            let oldEmail = emailTextField.placeholder! as String
+            fireRef?.updateData([
+                "email": emailTextField.placeholder! as String
+            ])
+            account.email = oldEmail
+        }
+        
+   
+        // Check and update username
+        if usernameTxtField.text != nil {
+            let newUsername = usernameTxtField.text! as String
+            fireRef?.updateData([
+                "username" : newUsername
+            ])
+            account.username = newUsername
+        }
+        
+        if usernameTxtField.text == nil && usernameTxtField.placeholder != nil || usernameTxtField.text == "" && usernameTxtField.placeholder != nil {
+            let oldUsername = usernameTxtField.placeholder! as String
+            fireRef?.updateData([
+                "username": usernameTxtField.placeholder! as String
+            ])
+            account.username = oldUsername
+        }
+        
+        
+        
+        // Check and update password
         if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
-            let newPass = passwordTxtField.placeholder
-            userRef?.child("password").setValue(newPass) 
+            let newPass = passwordTxtField.placeholder! as String
+            fireRef?.updateData([
+                "password": newPass
+            ])
+            account.password = newPass
         } else if passwordTxtField.text != nil {
-            let newPass = passwordTxtField.text as! String
-            userRef?.child("password").setValue(newPass)
+            let newPass = passwordTxtField.text! as String
+            fireRef?.updateData([
+                "password": newPass
+            ])
             account.password = newPass
         }
-      
+        
+        
+        // Check and update notes
         if notesTxtField.text == "" {
-            let newNotes = notesTxtField.text as! String
-            userRef?.child("notes").setValue(newNotes)
+            let newNotes = notesTxtField.text! as String
+            fireRef?.updateData([
+                "notes" : newNotes
+            ])
             account.notes = newNotes
         }
         
+//        if emailTextField.text != nil {
+//            let newEmail = emailTextField.text as! String
+//            userRef?.child("email").setValue(newEmail)
+//            account.email = newEmail
+//        }
+//
+//        if passwordTxtField.text == "" && passwordTxtField.placeholder != nil {
+//            let newPass = passwordTxtField.placeholder
+//            userRef?.child("password").setValue(newPass)
+//        } else if passwordTxtField.text != nil {
+//            let newPass = passwordTxtField.text! as String
+//            userRef?.child("password").setValue(newPass)
+//            account.password = newPass
+//        }
+//
+//        if notesTxtField.text == "" {
+//            let newNotes = notesTxtField.text! as String
+//            userRef?.child("notes").setValue(newNotes)
+//            account.notes = newNotes
+//        }
+        performSegue(withIdentifier: UNWIND_TO_ACCOUNT_DETAILS, sender: nil)
     }
 
 

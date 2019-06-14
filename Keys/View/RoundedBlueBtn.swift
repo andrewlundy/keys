@@ -25,20 +25,21 @@ class RoundedBlueBtn: UIButton {
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 10 {
+    @IBInspectable var cornerRadius: CGFloat = 18 {
         didSet {
             self.layer.cornerRadius = cornerRadius
         }
     }
     //3
     override func awakeFromNib() {
-        self.updateView()
+        self.updateView() 
     }
     
     //4
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.updateView()
+        self.clipsToBounds = true
     }
     
     //5
@@ -46,6 +47,7 @@ class RoundedBlueBtn: UIButton {
         self.layer.cornerRadius = cornerRadius
         self.backgroundColor = buttonColor
         self.tintColor = btnTintColor
+        self.clipsToBounds = true
     }
 
 }
