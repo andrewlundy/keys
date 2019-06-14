@@ -148,6 +148,14 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.accountNameLbl.text = account.name
         cell.emailAddressLbl.text = account.email
         cell.passwordLbl.text = account.password
+        
+        
+        if account.name == account.name && UIImage(named: "\(account.name.lowercased())Logo") != nil {
+            cell.accountImage.image = UIImage(named: "\(account.name.lowercased())Logo")
+        } else {
+            cell.accountImage.image = UIImage(named: "blankUserIcon")
+        }
+        
         return cell
     }
     

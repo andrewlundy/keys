@@ -314,12 +314,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyA-hN-fuc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="password123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyA-hN-fuc">
                                                     <rect key="frame" x="88" y="70" width="101" height="24.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="FJ7-kD-UNe" customClass="SocialIcon" customModule="Keys" customModuleProvider="target">
+                                                    <rect key="frame" x="334" y="27" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="AUD-t7-KNc"/>
+                                                        <constraint firstAttribute="width" constant="60" id="aoQ-Zf-RcY"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="pLJ-wF-DVC" firstAttribute="top" secondItem="CVr-Ca-KpK" secondAttribute="bottom" constant="5" id="2P2-ZP-0gR"/>
@@ -327,16 +334,19 @@
                                                 <constraint firstItem="CVr-Ca-KpK" firstAttribute="top" secondItem="Mvn-6d-Lf7" secondAttribute="top" constant="8" id="49r-3c-sBr"/>
                                                 <constraint firstAttribute="bottom" secondItem="VyA-hN-fuc" secondAttribute="bottom" constant="5.5" id="5YP-gS-POP"/>
                                                 <constraint firstItem="pLJ-wF-DVC" firstAttribute="leading" secondItem="J6H-1b-88f" secondAttribute="trailing" constant="3" id="6zB-uw-2LN"/>
-                                                <constraint firstItem="c7K-Lp-2ob" firstAttribute="top" secondItem="J6H-1b-88f" secondAttribute="bottom" constant="1" id="MKI-q9-49d"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="FJ7-kD-UNe" secondAttribute="bottom" constant="2" id="FSk-Fd-aQA"/>
+                                                <constraint firstItem="FJ7-kD-UNe" firstAttribute="top" secondItem="Mvn-6d-Lf7" secondAttribute="topMargin" constant="16" id="MBK-lh-lvE"/>
                                                 <constraint firstItem="c7K-Lp-2ob" firstAttribute="leading" secondItem="Mvn-6d-Lf7" secondAttribute="leading" constant="9" id="NKx-3l-eAz"/>
                                                 <constraint firstItem="VyA-hN-fuc" firstAttribute="top" secondItem="pLJ-wF-DVC" secondAttribute="bottom" constant="1" id="OOT-yg-G1B"/>
                                                 <constraint firstItem="VyA-hN-fuc" firstAttribute="leading" secondItem="c7K-Lp-2ob" secondAttribute="trailing" constant="3" id="cUj-Ts-1XL"/>
                                                 <constraint firstItem="c7K-Lp-2ob" firstAttribute="top" secondItem="pLJ-wF-DVC" secondAttribute="bottom" constant="1" id="e3f-UH-1n7"/>
                                                 <constraint firstItem="CVr-Ca-KpK" firstAttribute="leading" secondItem="Mvn-6d-Lf7" secondAttribute="leading" constant="9" id="g6K-xZ-6Vz"/>
+                                                <constraint firstItem="FJ7-kD-UNe" firstAttribute="trailing" secondItem="Mvn-6d-Lf7" secondAttribute="trailingMargin" id="of3-y7-hp6"/>
                                                 <constraint firstItem="J6H-1b-88f" firstAttribute="leading" secondItem="Mvn-6d-Lf7" secondAttribute="leading" constant="9" id="psV-XZ-vWu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="accountImage" destination="FJ7-kD-UNe" id="wxX-PP-wYn"/>
                                             <outlet property="accountNameLbl" destination="CVr-Ca-KpK" id="7HC-DN-isJ"/>
                                             <outlet property="emailAddressLbl" destination="pLJ-wF-DVC" id="rxj-OK-GmA"/>
                                             <outlet property="passwordLbl" destination="VyA-hN-fuc" id="mWY-PH-zBA"/>
@@ -397,7 +407,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYv-is-u2k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ORL-8n-hOG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2754" y="587"/>
+            <point key="canvasLocation" x="2753.6231884057975" y="586.95652173913049"/>
         </scene>
         <!--Account DetailsVC-->
         <scene sceneID="hby-XM-evq">
@@ -695,6 +705,9 @@
             <point key="canvasLocation" x="1022" y="133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebookLogo" width="1071.5" height="1071.5"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ndf-Kl-hwE"/>
     </inferredMetricsTieBreakers>
