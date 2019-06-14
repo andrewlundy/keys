@@ -31,30 +31,10 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        
-        let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
-        
-        
+//        let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
         accountNameLbl.text = account.name
-        
-    
-        
-        
-        userRef.observe(.value) { (snapshot) in
-            var newAccount: UserAccount!
-            guard let data = snapshot.value as? [String: AnyObject] else { return }
-            for child in data {
-                if let child = child.value as? [String: AnyObject] {
-                    let email = child["email"] as? String ?? ""
-                    let name = child["name"] as? String ?? ""
-                    let password = child["password"] as? String ?? ""
-                    newAccount = UserAccount(name: name, email: email, password: password)
-                }
-            }
-        }
         tableView.reloadData()
     }
     
@@ -71,7 +51,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             popup.account = account
             popup.modalPresentationStyle = .custom
             popup.modalTransitionStyle = .crossDissolve
-            popup.userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser?.uid)/accounts/\(account.name)")
+            popup.fireRef = Firestore.firestore().collection("users").document("\(Auth.auth().currentUser!.uid)").collection("Accounts").document(account.name)
         }
     }
     
@@ -81,7 +61,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,6 +74,9 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else if indexPath.row == 1 {
             cell.detailLbl.text = "Password"
             cell.detailValue.text = account.password
+        } else if indexPath.row == 2 {
+            cell.detailLbl.text = "Username"
+            cell.detailValue.text = account.username
         } else {
             cell.detailLbl.text = "Notes"
             cell.detailValue.text = "Notes for account"
@@ -101,11 +84,8 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return cell
     }
-
     
-   
-    
-    
-  
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

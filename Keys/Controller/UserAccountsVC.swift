@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -19,7 +20,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var usernameLbl: UIBarButtonItem!
     
     
-    
     // Variables
     var ref = Database.database().reference()
     let userID = Auth.auth().currentUser?.uid
@@ -28,11 +28,32 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
 
     
+    // Firestore Variables
+    let fireStoreDb = Firestore.firestore()
+    
+    
+    
     // Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
-
+        let newRef = fireStoreDb.collection("users").document("\(userID!)")
+        
+        // Update username label
+        newRef.getDocument { (document, error) in
+            if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> FirestoreUser? in
+                return FirestoreUser(dictionary: data)
+            })
+            })  {
+                self.usernameLbl.title = newUser.name
+            } else {
+                print("Document does not exist.")
+            }
+        }
+       
+      
+        
         usernameLbl.target = nil
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,46 +68,45 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(noAccountsLbl)
         
         
-        
-        // Update username label
-        ref.child("users").child(userID!).observeSingleEvent(of: .value) { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            self.usernameLbl.title = username
-        }
-        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        // Listen for change of value in the user's accounts
-        userRef.observe(.value) { (snapshot) in
-            var newAccounts: [UserAccount] = []
-            // Get the value of the data and cast it as a dictionary
-            guard let data = snapshot.value as? [String: AnyObject] else { return }
-            // Loop through the children of the data above
-            for child in data {
-                // Check to see if there is child data in the child from above, if so - cast it as a dictionary
-                if let childData = child.value as? [String: Any] {
-                    let name = childData["name"] as? String ?? ""
-                    let email = childData["email"] as? String ?? ""
-                    let password = childData["password"] as? String ?? ""
-                    var newAccount = UserAccount(name: name, email: email, password: password)
-                    newAccount.ref = snapshot.ref
-                    newAccounts.append(newAccount)
+        // Listen for change of value in the user's account
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").addSnapshotListener { (snapshot, error) in
+            guard let document = snapshot else {
+                print("There was an error fetching document: \(error!)")
+                return
+            }
+            // Get documents when there is a change in data
+            self.fireStoreDb.collection("users").document(self.userID!).collection("Accounts").getDocuments { (snapshot, error) in
+                var newAccounts: [UserAccount] = []
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in snapshot!.documents {
+                        if let childData = document.data() as? [String: Any] {
+                            let name = childData["accountName"] as? String ?? ""
+                            let username = childData["username"] as? String ?? ""
+                            let email = childData["email"] as? String ?? ""
+                            let password = childData["password"] as? String ?? ""
+                            let newAccount = UserAccount(name: name, email: email, password: password, username: username)
+                            newAccounts.append(newAccount)
+                        }
+                    }
+                    self.accounts = newAccounts
+                    self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+                    
+                    if self.accounts.count > 0 {
+                        self.noAccountsLbl.isHidden = true
+                    }
+                    
+                    if self.accounts.count == 0 {
+                        self.noAccountsLbl.isHidden = false
+                    }
+                    self.tableView.reloadData()
                 }
             }
-            self.accounts = newAccounts
-            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-            
-            if self.accounts.count > 0 {
-                self.noAccountsLbl.isHidden = true
-            }
-            
-            if self.accounts.count == 0 {
-                self.noAccountsLbl.isHidden = false
-            }
-            
-            self.tableView.reloadData()
+        
         }
     }
     
@@ -128,6 +148,14 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.accountNameLbl.text = account.name
         cell.emailAddressLbl.text = account.email
         cell.passwordLbl.text = account.password
+        
+        
+        if account.name == account.name && UIImage(named: "\(account.name.lowercased())Logo") != nil {
+            cell.accountImage.image = UIImage(named: "\(account.name.lowercased())Logo")
+        } else {
+            cell.accountImage.image = UIImage(named: "blankUserIcon")
+        }
+        
         return cell
     }
     
@@ -140,7 +168,8 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let account = accounts[indexPath.row]
-            account.ref?.removeValue()
+            // Delete account in Firestore path
+            fireStoreDb.collection("users").document(userID!).collection("Accounts").document("\(account.name)").delete()
             self.accounts.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             if accounts.count > 0 {
@@ -169,3 +198,5 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 }
+
+
