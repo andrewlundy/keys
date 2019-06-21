@@ -19,7 +19,7 @@ class SocialIcon: UIImageView {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 3
+        self.layer.shadowRadius = 1
         
     }
 }

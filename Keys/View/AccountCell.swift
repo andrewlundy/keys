@@ -10,7 +10,6 @@ import UIKit
 
 class AccountCell: UITableViewCell {
 
-  
     @IBOutlet weak var accountNameLbl: UILabel!
     @IBOutlet weak var emailAddressLbl: UILabel!
     @IBOutlet weak var passwordLbl: UILabel!

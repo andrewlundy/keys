@@ -21,9 +21,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     // Variables
-    var ref = Database.database().reference()
     let userID = Auth.auth().currentUser?.uid
-    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts")
     var accounts: [UserAccount] = []
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
 
