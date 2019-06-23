@@ -40,8 +40,13 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
         
         let testRef = fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Instagram").collection("Instagram")
-        let query = testRef.whereField("name", isEqualTo: true)
-        print(query)
+        print(testRef.collectionID)
+        
+        // Get all documents in Accounts collection
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
+            
+        }
+        
         
         // Update username label
         newRef.getDocument { (document, error) in
