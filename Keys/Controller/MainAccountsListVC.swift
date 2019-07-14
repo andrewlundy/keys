@@ -15,17 +15,17 @@ import FirebaseAuth
 class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableview: UITableView!
-    let account = "Facebook"
-    let accountCounts = 5
-    
     @IBOutlet weak var usernameLbl: UIBarButtonItem!
     
     // Variables
     let userID = Auth.auth().currentUser?.uid
     var accounts: [UserAccount] = []
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
-    
-    
+    var documentIDs: [String] = []
+   
+    let dummyAccount = "Facebook"
+    let dummyAccountCount = 5
+   
     // Firestore Variables
     let fireStoreDb = Firestore.firestore()
     
@@ -37,15 +37,24 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
 
         tableview.dataSource = self
         tableview.delegate = self
+        
+        
+        
+        
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
-        
-        let testRef = fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Instagram").collection("Instagram")
-        print(testRef.collectionID)
-        
-        // Get all documents in Accounts collection
         fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
-            
+            var newDocumentIDs: [String] = []
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in snapshot!.documents {
+                    newDocumentIDs.append(document.documentID)
+                }
+            }
+            self.documentIDs = newDocumentIDs
+            self.tableview.reloadData()
         }
+
         
         
         // Update username label
@@ -59,22 +68,25 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
                 print("Document does not exist.")
             }
         }
-        
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.documentIDs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableview.dequeueReusableCell(withIdentifier: "MainAccountCell") as! MainAccountCell
+        let documentName = documentIDs[indexPath.row]
+        cell.accountCountLbl.text = String(dummyAccountCount)
         
-        cell.accountCountLbl.text = String(accountCounts)
-        cell.accountLogoImg.image = UIImage(named: "\(account.lowercased())Logo")
-        cell.accountNameLbl.text = account
+        if documentName != "" && UIImage(named: "\(documentName.lowercased())Logo") != nil {
+            cell.accountLogoImg.image = UIImage(named: "\(documentName.lowercased())Logo")
+        } else {
+            cell.accountLogoImg.image = UIImage(named: "blankeUserIcon")
+        }
+        
+        cell.accountNameLbl.text = documentName
         return cell
     }
-    
-
 }
