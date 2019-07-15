@@ -445,15 +445,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="110" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="39g-nL-56t">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="39g-nL-56t">
                                 <rect key="frame" x="0.0" y="56" width="414" height="579"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainAccountCell" rowHeight="110" id="fun-Oa-ozj" customClass="MainAccountCell" customModule="Keys" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="110"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainAccountCell" rowHeight="100" id="fun-Oa-ozj" customClass="MainAccountCell" customModule="Keys" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fun-Oa-ozj" id="pbe-pY-Q7t">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fg-ZT-r0c">
@@ -483,15 +483,15 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hC2-wg-Wrm">
-                                                    <rect key="frame" x="327" y="18" width="75" height="75"/>
+                                                    <rect key="frame" x="327" y="17" width="65" height="65"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="heM-7E-S2w"/>
-                                                        <constraint firstAttribute="height" constant="75" id="xYV-dx-DUv"/>
+                                                        <constraint firstAttribute="width" constant="65" id="heM-7E-S2w"/>
+                                                        <constraint firstAttribute="height" constant="65" id="xYV-dx-DUv"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hC2-wg-Wrm" firstAttribute="top" secondItem="pbe-pY-Q7t" secondAttribute="top" constant="18" id="Cxv-vK-4cl"/>
+                                                <constraint firstItem="hC2-wg-Wrm" firstAttribute="top" secondItem="pbe-pY-Q7t" secondAttribute="top" constant="17" id="Cxv-vK-4cl"/>
                                                 <constraint firstAttribute="trailing" secondItem="hC2-wg-Wrm" secondAttribute="trailing" constant="12" id="F2u-0z-8Cy"/>
                                                 <constraint firstItem="kuf-9t-DON" firstAttribute="top" secondItem="9fg-ZT-r0c" secondAttribute="bottom" constant="3" id="GPb-fU-8RQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="kuf-9t-DON" secondAttribute="bottom" constant="16" id="Kc9-22-3TY"/>
@@ -843,7 +843,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="facebookLogo" width="1071.5" height="1071.5"/>
+        <image name="facebookLogo" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yUn-h8-zmV"/>
