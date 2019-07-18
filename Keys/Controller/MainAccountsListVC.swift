@@ -23,9 +23,8 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
     var documentIDs: [String] = []
    
-    let dummyAccount = "Facebook"
     let dummyAccountCount = 5
-   
+    
     // Firestore Variables
     let fireStoreDb = Firestore.firestore()
     
@@ -42,6 +41,8 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         
         
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
+        
+        // Get main accounts count
         fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
             var newDocumentIDs: [String] = []
             if let error = error {
@@ -53,9 +54,24 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
             }
             self.documentIDs = newDocumentIDs
             self.tableview.reloadData()
+            
+            
+            
+            
         }
 
-        
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
+            for document in snapshot!.documents {
+                for documentID in self.documentIDs {
+                    if let keyPath = document.value(forKeyPath: documentID) {
+                        print(keyPath)
+                    }
+                }
+                
+               
+            }
+            
+        }
         
         // Update username label
         newRef.getDocument { (document, error) in
@@ -68,6 +84,30 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
                 print("Document does not exist.")
             }
         }
+        
+    
+        
+        
+//        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Instagram").getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data() as! [String: Any]
+//
+//
+//                for key in dataDescription {
+//                    if key.key == "Instagram" {
+//                        print(key.value)
+//                    }
+//
+//                }
+//            } else {
+//                print("Document doesn't exist.")
+//            }
+//        }
+
+        // Get sub accounts count
+        
+        
+        
     }
     
 
@@ -83,7 +123,7 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         if documentName != "" && UIImage(named: "\(documentName.lowercased())Logo") != nil {
             cell.accountLogoImg.image = UIImage(named: "\(documentName.lowercased())Logo")
         } else {
-            cell.accountLogoImg.image = UIImage(named: "blankeUserIcon")
+            cell.accountLogoImg.image = UIImage(named: "blankUserIcon")
         }
         
         cell.accountNameLbl.text = documentName

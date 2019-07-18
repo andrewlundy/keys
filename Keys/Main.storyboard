@@ -457,23 +457,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fg-ZT-r0c">
-                                                    <rect key="frame" x="9" y="25" width="301" height="32"/>
+                                                    <rect key="frame" x="19" y="25" width="301" height="31.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="301" id="Nv0-UR-pfu"/>
-                                                        <constraint firstAttribute="height" constant="32" id="qy8-Cl-iIu"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Accounts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0A-aG-uSw">
-                                                    <rect key="frame" x="9" y="60" width="116" height="24"/>
+                                                    <rect key="frame" x="19" y="56.666666666666664" width="116" height="23.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuf-9t-DON">
-                                                    <rect key="frame" x="127" y="60" width="36" height="23"/>
+                                                    <rect key="frame" x="137" y="58" width="36" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="nBc-cM-wdF"/>
                                                         <constraint firstAttribute="height" constant="23" id="y4B-AF-lOj"/>
@@ -483,7 +482,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hC2-wg-Wrm">
-                                                    <rect key="frame" x="327" y="17" width="65" height="65"/>
+                                                    <rect key="frame" x="337" y="17" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="heM-7E-S2w"/>
                                                         <constraint firstAttribute="height" constant="65" id="xYV-dx-DUv"/>
@@ -491,19 +490,15 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hC2-wg-Wrm" firstAttribute="top" secondItem="pbe-pY-Q7t" secondAttribute="top" constant="17" id="Cxv-vK-4cl"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kuf-9t-DON" secondAttribute="bottom" constant="8" id="6gb-vu-ZGb"/>
                                                 <constraint firstAttribute="trailing" secondItem="hC2-wg-Wrm" secondAttribute="trailing" constant="12" id="F2u-0z-8Cy"/>
-                                                <constraint firstItem="kuf-9t-DON" firstAttribute="top" secondItem="9fg-ZT-r0c" secondAttribute="bottom" constant="3" id="GPb-fU-8RQ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="kuf-9t-DON" secondAttribute="bottom" constant="16" id="Kc9-22-3TY"/>
-                                                <constraint firstItem="l0A-aG-uSw" firstAttribute="top" secondItem="9fg-ZT-r0c" secondAttribute="bottom" constant="3" id="Sg5-OR-NDS"/>
-                                                <constraint firstItem="kuf-9t-DON" firstAttribute="leading" secondItem="l0A-aG-uSw" secondAttribute="trailing" constant="2" id="TeL-Za-dh6"/>
+                                                <constraint firstItem="hC2-wg-Wrm" firstAttribute="top" secondItem="pbe-pY-Q7t" secondAttribute="top" constant="17" id="H04-99-NDd"/>
                                                 <constraint firstItem="9fg-ZT-r0c" firstAttribute="top" secondItem="pbe-pY-Q7t" secondAttribute="top" constant="25" id="Z2u-rR-Plq"/>
-                                                <constraint firstItem="kuf-9t-DON" firstAttribute="leading" secondItem="l0A-aG-uSw" secondAttribute="trailing" constant="2" id="dJN-r1-6Fd"/>
-                                                <constraint firstItem="l0A-aG-uSw" firstAttribute="top" secondItem="9fg-ZT-r0c" secondAttribute="bottom" constant="3" id="gkm-RD-i0b"/>
+                                                <constraint firstItem="kuf-9t-DON" firstAttribute="leading" secondItem="l0A-aG-uSw" secondAttribute="trailing" constant="2" id="htV-i3-v9Q"/>
                                                 <constraint firstItem="hC2-wg-Wrm" firstAttribute="leading" secondItem="9fg-ZT-r0c" secondAttribute="trailing" constant="17" id="onF-TX-12b"/>
-                                                <constraint firstAttribute="bottom" secondItem="l0A-aG-uSw" secondAttribute="bottom" constant="26" id="qDq-1S-YqF"/>
-                                                <constraint firstItem="l0A-aG-uSw" firstAttribute="leading" secondItem="pbe-pY-Q7t" secondAttribute="leading" constant="9" id="tKK-wQ-051"/>
-                                                <constraint firstItem="9fg-ZT-r0c" firstAttribute="leading" secondItem="pbe-pY-Q7t" secondAttribute="leading" constant="9" id="yiK-Ts-hY4"/>
+                                                <constraint firstAttribute="bottom" secondItem="l0A-aG-uSw" secondAttribute="bottom" constant="20" id="qDq-1S-YqF"/>
+                                                <constraint firstItem="l0A-aG-uSw" firstAttribute="top" secondItem="9fg-ZT-r0c" secondAttribute="bottom" id="qss-HQ-4Gg"/>
+                                                <constraint firstItem="l0A-aG-uSw" firstAttribute="leading" secondItem="pbe-pY-Q7t" secondAttribute="leading" constant="19" id="tKK-wQ-051"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
