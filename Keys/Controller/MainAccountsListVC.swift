@@ -33,7 +33,10 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         self.tableview.reloadData()
         self.tableview.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-
+        self.tableview.tableFooterView = UIView()
+        
+        createRightBarBtn()
+        
         tableview.dataSource = self
         tableview.delegate = self
         
@@ -54,23 +57,14 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
             }
             self.documentIDs = newDocumentIDs
             self.tableview.reloadData()
-            
-            
-            
-            
         }
 
         fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
-            for document in snapshot!.documents {
-                for documentID in self.documentIDs {
-                    if let keyPath = document.value(forKeyPath: documentID) {
-                        print(keyPath)
-                    }
-                }
-                
-               
+            for documentID in self.documentIDs {
+                self.fireStoreDb.collection("users").document("\(self.userID!)").collection("Accounts").document(documentID).getDocument(completion: { (document, error) in
+                    print(document?.data())
+                })
             }
-            
         }
         
         // Update username label
@@ -85,8 +79,42 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-    
-        
+        // Listen for change of value in the user's account
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").addSnapshotListener { (snapshot, error) in
+            guard let document = snapshot else {
+                print("There was an error fetching document: \(error!)")
+                return
+            }
+            // Get documents when there is a change in data
+            self.fireStoreDb.collection("users").document(self.userID!).collection("Accounts").getDocuments { (snapshot, error) in
+                var newAccounts: [UserAccount] = []
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in snapshot!.documents {
+                        if let childData = document.data() as? [String: Any] {
+                            let name = childData["accountName"] as? String ?? ""
+                            let username = childData["username"] as? String ?? ""
+                            let email = childData["email"] as? String ?? ""
+                            let password = childData["password"] as? String ?? ""
+                            let newAccount = UserAccount(name: name, email: email, password: password, username: username)
+                            newAccounts.append(newAccount)
+                        }
+                    }
+                    self.accounts = newAccounts
+                    self.tableview.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+                    
+                    if self.accounts.count > 0 {
+                        self.noAccountsLbl.isHidden = true
+                    }
+                    
+                    if self.accounts.count == 0 {
+                        self.noAccountsLbl.isHidden = false
+                    }
+                    self.tableview.reloadData()
+                }
+            }
+        }
         
 //        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").document("Instagram").getDocument { (document, error) in
 //            if let document = document, document.exists {
@@ -106,10 +134,21 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
 
         // Get sub accounts count
         
-        
-        
     }
     
+  
+    
+    func createRightBarBtn() {
+        let addAccountBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAccount))
+        navigationItem.rightBarButtonItem = addAccountBtn
+    }
+    
+    @objc func addAccount() {
+        let addAccountModal = AddAccountVC()
+        addAccountModal.modalPresentationStyle = .custom
+        addAccountModal.modalTransitionStyle = .crossDissolve
+        present(addAccountModal, animated: true, completion: {})
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.documentIDs.count
@@ -129,4 +168,6 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         cell.accountNameLbl.text = documentName
         return cell
     }
+    
+   
 }

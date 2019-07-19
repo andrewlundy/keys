@@ -104,7 +104,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.tableView.reloadData()
                 }
             }
-        
         }
     }
     

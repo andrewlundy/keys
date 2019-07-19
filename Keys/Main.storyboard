@@ -530,7 +530,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Keys" id="WUd-jh-xdI">
                         <barButtonItem key="leftBarButtonItem" id="TN4-xz-3AC"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pGY-v8-385"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="39g-nL-56t" id="HtU-kH-ZLR"/>
