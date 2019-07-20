@@ -438,6 +438,7 @@
                                     <color key="titleColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="logoutBtnPressed:" destination="P0y-OP-ft2" eventType="touchUpInside" id="3lF-4B-wT4"/>
                                     <action selector="logoutBtnPressed:" destination="j7R-FJ-l1n" eventType="touchUpInside" id="QOU-sP-Sod"/>
                                 </connections>
                             </button>

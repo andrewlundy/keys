@@ -38,6 +38,8 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.tableFooterView = UIView()
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
         
+        print("UserAccountsVC")
+        
         // Update username label
         newRef.getDocument { (document, error) in
             if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> FirestoreUser? in
@@ -116,7 +118,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         } catch {
             debugPrint("No")
         }
-        
     }
 
     @IBAction func addBtnPressed(_ sender: Any) {

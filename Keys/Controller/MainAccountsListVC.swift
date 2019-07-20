@@ -67,6 +67,30 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        // Listen for change of value in the user's account
+        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").addSnapshotListener { (snapshot, error) in
+            guard let document = snapshot else {
+                print("There was an error fetching document: \(error!)")
+                return
+            }
+            // Get documents when there is a change in data
+            self.fireStoreDb.collection("users").document(self.userID!).collection("Accounts").getDocuments { (snapshot, error) in
+                var newDocumentIDs: [String] = []
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in snapshot!.documents {
+                       newDocumentIDs.append(document.documentID)
+                        
+                    }
+                    self.documentIDs = newDocumentIDs
+                    self.tableview.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+                    
+                    self.tableview.reloadData()
+                }
+            }
+        }
+        
         // Update username label
         newRef.getDocument { (document, error) in
             if let newUser = document.flatMap({ ($0.data()).flatMap({ (data) -> FirestoreUser? in
@@ -76,43 +100,6 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
                 self.usernameLbl.title = newUser.name
             } else {
                 print("Document does not exist.")
-            }
-        }
-        
-        // Listen for change of value in the user's account
-        fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").addSnapshotListener { (snapshot, error) in
-            guard let document = snapshot else {
-                print("There was an error fetching document: \(error!)")
-                return
-            }
-            // Get documents when there is a change in data
-            self.fireStoreDb.collection("users").document(self.userID!).collection("Accounts").getDocuments { (snapshot, error) in
-                var newAccounts: [UserAccount] = []
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    for document in snapshot!.documents {
-                        if let childData = document.data() as? [String: Any] {
-                            let name = childData["accountName"] as? String ?? ""
-                            let username = childData["username"] as? String ?? ""
-                            let email = childData["email"] as? String ?? ""
-                            let password = childData["password"] as? String ?? ""
-                            let newAccount = UserAccount(name: name, email: email, password: password, username: username)
-                            newAccounts.append(newAccount)
-                        }
-                    }
-                    self.accounts = newAccounts
-                    self.tableview.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-                    
-                    if self.accounts.count > 0 {
-                        self.noAccountsLbl.isHidden = true
-                    }
-                    
-                    if self.accounts.count == 0 {
-                        self.noAccountsLbl.isHidden = false
-                    }
-                    self.tableview.reloadData()
-                }
             }
         }
         
@@ -144,10 +131,10 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func addAccount() {
-        let addAccountModal = AddAccountVC()
-        addAccountModal.modalPresentationStyle = .custom
-        addAccountModal.modalTransitionStyle = .crossDissolve
-        present(addAccountModal, animated: true, completion: {})
+        let addFoldersModal = AddFoldersModal()
+        addFoldersModal.modalPresentationStyle = .custom
+        addFoldersModal.modalTransitionStyle = .crossDissolve
+        present(addFoldersModal, animated: true, completion: {})
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

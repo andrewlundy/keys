@@ -30,6 +30,7 @@
 		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
 		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
 		26C2A97A22B3319D0027D341 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C2A97922B3319D0027D341 /* Images.xcassets */; };
+		26C8CB8322E2946A006B8D26 /* AddFoldersModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8CB8222E2946A006B8D26 /* AddFoldersModal.swift */; };
 		26FC61E32299E1E300CC81F4 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC61E22299E1E300CC81F4 /* NewUser.swift */; };
 		26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
@@ -63,6 +64,7 @@
 		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
 		26C2A97922B3319D0027D341 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		26C8CB8222E2946A006B8D26 /* AddFoldersModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddFoldersModal.swift; path = ../../AddFoldersModal.swift; sourceTree = "<group>"; };
 		26FC61E22299E1E300CC81F4 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsVC.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				263B109A223EBDB8008C7DB7 /* AccountCell.swift */,
-				268415A222B8A15D003BEECB /* MainAccountCell.swift */,
 				26828E85225065E0003C6FA6 /* AccountDetailsCell.swift */,
+				268415A222B8A15D003BEECB /* MainAccountCell.swift */,
 				2671042D2234198F00BC83CC /* ModalView.swift */,
 				269179A42233545F00208CD8 /* RoundedBlueBtn.swift */,
 				2620505F22AA1C370098891D /* SocialIcon.swift */,
@@ -158,15 +160,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		26C8CB8722E295DC006B8D26 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				264AE82D223CA50400573D3C /* AddAccountVC.swift */,
+				26C8CB8222E2946A006B8D26 /* AddFoldersModal.swift */,
+				268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */,
+			);
+			name = Modals;
+			sourceTree = "<group>";
+		};
 		26ECFF7322329F4200BC43AD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				26C8CB8722E295DC006B8D26 /* Modals */,
 				26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */,
-				264AE82D223CA50400573D3C /* AddAccountVC.swift */,
 				2641D9D1225AA87400486683 /* EditDetailsViewController.swift */,
 				2691799F2233509000208CD8 /* LoginVC.swift */,
 				268415A022B8A01C003BEECB /* MainAccountsListVC.swift */,
-				268B3D112249BC3E00FCB9FE /* ResetPasswordModal.swift */,
 				266BD25A223B14D90008D44D /* SignUpViewController.swift */,
 				260E2A03223682EA0002E4AD /* UserAccountsVC.swift */,
 			);
@@ -337,6 +348,7 @@
 				269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */,
 				268B3D132249BC3E00FCB9FE /* ResetPasswordModal.swift in Sources */,
 				268415A322B8A15D003BEECB /* MainAccountCell.swift in Sources */,
+				26C8CB8322E2946A006B8D26 /* AddFoldersModal.swift in Sources */,
 				264AE82F223CA50400573D3C /* AddAccountVC.swift in Sources */,
 				2641D9D2225AA87400486683 /* EditDetailsViewController.swift in Sources */,
 				264AB41A22329DC0006A0CAB /* AppDelegate.swift in Sources */,
