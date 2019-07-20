@@ -30,6 +30,7 @@
 		269179A02233509000208CD8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691799F2233509000208CD8 /* LoginVC.swift */; };
 		269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269179A42233545F00208CD8 /* RoundedBlueBtn.swift */; };
 		26C2A97A22B3319D0027D341 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C2A97922B3319D0027D341 /* Images.xcassets */; };
+		26E39B4F22CD87B40097160B /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E39B4E22CD87B40097160B /* LoginScreen.swift */; };
 		26FC61E32299E1E300CC81F4 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC61E22299E1E300CC81F4 /* NewUser.swift */; };
 		26FF7AAE224D94AD0081A1B4 /* AccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */; };
 		A6D86BE0F684CE2D2A2A83DF /* Pods_Keys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38EF186F6741BAD266D40C8 /* Pods_Keys.framework */; };
@@ -63,6 +64,7 @@
 		2691799F2233509000208CD8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		269179A42233545F00208CD8 /* RoundedBlueBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBlueBtn.swift; sourceTree = "<group>"; };
 		26C2A97922B3319D0027D341 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		26E39B4E22CD87B40097160B /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		26FC61E22299E1E300CC81F4 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		26FF7AAD224D94AD0081A1B4 /* AccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsVC.swift; sourceTree = "<group>"; };
 		A97DAF24D038D71967E8B8E3 /* Pods-Keys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keys.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keys/Pods-Keys.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		264AB41822329DC0006A0CAB /* Keys */ = {
 			isa = PBXGroup;
 			children = (
+				26E39B4B22CD85180097160B /* SwiftUI */,
 				266937C9223721660012B13F /* Resources */,
 				26710431223464D800BC83CC /* Keys.entitlements */,
 				2671042C223371CC00BC83CC /* XIBs */,
@@ -156,6 +159,14 @@
 				2620505F22AA1C370098891D /* SocialIcon.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		26E39B4B22CD85180097160B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				26E39B4E22CD87B40097160B /* LoginScreen.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		26ECFF7322329F4200BC43AD /* Controller */ = {
@@ -333,6 +344,7 @@
 				2617125622910C4700A8524D /* User.swift in Sources */,
 				2671043022345E7400BC83CC /* UserAccount.swift in Sources */,
 				260E2A04223682EA0002E4AD /* UserAccountsVC.swift in Sources */,
+				26E39B4F22CD87B40097160B /* LoginScreen.swift in Sources */,
 				266BD25B223B14D90008D44D /* SignUpViewController.swift in Sources */,
 				269179A52233545F00208CD8 /* RoundedBlueBtn.swift in Sources */,
 				268B3D132249BC3E00FCB9FE /* ResetPasswordModal.swift in Sources */,
@@ -485,13 +497,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QCV468WDTL;
 				INFOPLIST_FILE = Keys/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tech.lundy.Keys;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.lundy.Keys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -505,13 +518,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QCV468WDTL;
 				INFOPLIST_FILE = Keys/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tech.lundy.Keys;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.lundy.Keys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
