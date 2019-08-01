@@ -23,7 +23,7 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
     var documentIDs: [String] = []
    
-    let dummyAccountCount = 5
+    let dummyAccountCount = 10
     
     // Firestore Variables
     let fireStoreDb = Firestore.firestore()
