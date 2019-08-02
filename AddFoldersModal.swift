@@ -18,10 +18,11 @@ class AddFoldersModal: UIViewController {
     let folderNameTxtField = UITextField()
     let folderNameLineView = UIView()
     
-    let addButton = UIButton()
+    let addBtn = UIButton()
+    let closeBtn = UIButton()
     
     let whatsAFolderBtn = UIButton()
-    let alert = UIAlertController(title: "What's a Folder?", message: "A folder is the main account type in which all your sub accounts will be stored.", preferredStyle: .alert)
+    let alert = UIAlertController(title: "What's a Folder?", message: "A folder is a place where you can keep multiple accounts for the same platform. \n\nExample - multiple Facebook logins are stored in one Facebook folder.", preferredStyle: .alert)
     
     @objc func presentAlert() {
         self.present(alert, animated: true, completion: nil)
@@ -30,7 +31,7 @@ class AddFoldersModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
             print("The action was successful.")
         }))
     }
@@ -43,6 +44,8 @@ class AddFoldersModal: UIViewController {
         setFolderNameTextFieldConstraints()
         setLineViewConstraints()
         setupWhatsAFolderConstraints()
+        setCloseBtnConstraints()
+        setAddBtnConstraints()
     }
     
     // UI Element Setups
@@ -53,32 +56,55 @@ class AddFoldersModal: UIViewController {
         view.addSubview(modalView)
         
         modalTitle.text = "Add a New Folder"
-        modalTitle.font = UIFont(name: "Avenir-Heavy", size: 19)
+        modalTitle.font = UIFont(name: "Avenir-Heavy", size: 18)
         modalTitle.textAlignment = .center
         modalView.addSubview(modalTitle)
         
-        folderNameTxtField.font = UIFont(name: "Avenir-Book", size: 16)
+        folderNameTxtField.font = UIFont(name: "Avenir-Book", size: 15)
         folderNameTxtField.placeholder = "Folder Name"
         modalView.addSubview(folderNameTxtField)
         
-        folderNameLineView.backgroundColor = UIColor(red: 13/255, green: 62/255, blue: 108/255, alpha: 1)
+        folderNameLineView.backgroundColor = UIColor(red: 24/255, green: 62/255, blue: 108/255, alpha: 0.7)
         modalView.addSubview(folderNameLineView)
         
         whatsAFolderBtn.setTitle("What's a Folder?", for: .normal)
         whatsAFolderBtn.setTitleColor(UIColor(red: 24/255, green: 61/255, blue: 109/255, alpha: 1), for: .normal)
-        whatsAFolderBtn.titleLabel?.font = UIFont(name: "Avenir-Light", size: 14)
+        whatsAFolderBtn.setTitleColor(UIColor(red: 24/255, green: 61/255, blue: 109/255, alpha: 0.5), for: .highlighted)
+        whatsAFolderBtn.titleLabel?.font = UIFont(name: "Avenir-Light", size: 13)
         whatsAFolderBtn.frame = CGRect(x: 15, y: 50, width: 300, height: 30)
         whatsAFolderBtn.addTarget(self, action: #selector(presentAlert), for: .touchUpInside)
         modalView.addSubview(whatsAFolderBtn)
+        
+        closeBtn.setImage(UIImage(named: "error"), for: .normal)
+        closeBtn.contentMode = .scaleAspectFit
+        closeBtn.setTitleColor(UIColor(red: 24/255, green: 61/255, blue: 109/255, alpha: 1), for: .normal)
+        closeBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        closeBtn.addTarget(self, action: #selector(closeModal), for: .touchUpInside)
+        modalView.addSubview(closeBtn)
+        
+        addBtn.setTitle("Add Folder", for: .normal)
+        addBtn.titleLabel?.font = UIFont(name: "Avenir-Light", size: 17)
+        addBtn.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1), for: .normal)
+        addBtn.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), for: .highlighted)
+        addBtn.frame = CGRect(x: 0, y: 0, width: 150, height: 30)
+        addBtn.backgroundColor = UIColor(red: 24/255, green: 61/255, blue: 109/255, alpha: 1)
+        addBtn.layer.cornerRadius = 5
+        addBtn.clipsToBounds = true
+        modalView.addSubview(addBtn)
+        
     }
  
+    @objc func closeModal() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     // Constraint Setups
     func setModalViewConstraints() {
         // Modal
         modalView.translatesAutoresizingMaskIntoConstraints = false
         modalView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        modalView.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        modalView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         modalView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         modalView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
@@ -88,15 +114,15 @@ class AddFoldersModal: UIViewController {
         modalTitle.translatesAutoresizingMaskIntoConstraints = false
         modalTitle.centerXAnchor.constraint(equalTo: modalView.centerXAnchor).isActive = true
         modalTitle.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        modalTitle.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        modalTitle.topAnchor.constraint(equalTo: modalView.topAnchor, constant: 25).isActive = true
+        modalTitle.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        modalTitle.topAnchor.constraint(equalTo: modalView.topAnchor, constant: 30).isActive = true
     }
 
     func setFolderNameTextFieldConstraints() {
         folderNameTxtField.translatesAutoresizingMaskIntoConstraints = false
         folderNameTxtField.centerXAnchor.constraint(equalTo: modalView.centerXAnchor).isActive = true
         folderNameTxtField.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        folderNameTxtField.centerYAnchor.constraint(equalTo: modalView.centerYAnchor).isActive = true
+        folderNameTxtField.centerYAnchor.constraint(equalTo: modalView.centerYAnchor, constant: -20).isActive = true
     }
     
     
@@ -111,8 +137,23 @@ class AddFoldersModal: UIViewController {
     func setupWhatsAFolderConstraints() {
         whatsAFolderBtn.translatesAutoresizingMaskIntoConstraints = false
         whatsAFolderBtn.centerXAnchor.constraint(equalTo: modalView.centerXAnchor).isActive = true
-        whatsAFolderBtn.bottomAnchor.constraint(equalTo: modalView.bottomAnchor, constant: -25).isActive = true
+        whatsAFolderBtn.bottomAnchor.constraint(equalTo: modalView.bottomAnchor, constant: -15).isActive = true
+    }
     
+    func setCloseBtnConstraints() {
+        closeBtn.translatesAutoresizingMaskIntoConstraints = false
+        closeBtn.leadingAnchor.constraint(equalTo: modalView.leadingAnchor, constant: 20).isActive = true
+        closeBtn.topAnchor.constraint(equalTo: modalView.topAnchor, constant: 20).isActive = true
+        closeBtn.heightAnchor.constraint(equalToConstant: 13).isActive = true
+        closeBtn.widthAnchor.constraint(equalToConstant: 13).isActive = true
+    }
+    
+    func setAddBtnConstraints() {
+        addBtn.translatesAutoresizingMaskIntoConstraints = false
+        addBtn.centerXAnchor.constraint(equalTo: modalView.centerXAnchor).isActive = true
+        addBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        addBtn.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        addBtn.bottomAnchor.constraint(equalTo: whatsAFolderBtn.topAnchor, constant: -55).isActive = true
     }
     
 }
