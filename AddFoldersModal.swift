@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class AddFoldersModal: UIViewController {
-
-    let screenSize: CGRect = UIScreen.main.bounds
+    let fireStoreDb = Firestore.firestore()
+    
+    var accountRef: DocumentReference!
+    
     
     // UI Elements
     let modalView = UIView()
@@ -31,9 +37,8 @@ class AddFoldersModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubView()
-        alert.addAction(UIAlertAction(title: "Got it!", style: .default, handler: { (action) in
-            print("The action was successful.")
-        }))
+        alert.addAction(UIAlertAction(title: "Got it!", style: .default))
+        view.layer.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.15).cgColor
     }
     
 
@@ -47,6 +52,7 @@ class AddFoldersModal: UIViewController {
         setCloseBtnConstraints()
         setAddBtnConstraints()
     }
+    
     
     // UI Element Setups
     func setupModalView() {
@@ -90,8 +96,34 @@ class AddFoldersModal: UIViewController {
         addBtn.backgroundColor = UIColor(red: 24/255, green: 61/255, blue: 109/255, alpha: 1)
         addBtn.layer.cornerRadius = 5
         addBtn.clipsToBounds = true
+        addBtn.addTarget(self, action: #selector(addFolder), for: .touchUpInside)
         modalView.addSubview(addBtn)
         
+    }
+    
+    @objc func addFolder() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        guard let folderName = folderNameTxtField.text else { return }
+        
+        if folderNameTxtField.text!.isEmpty {
+            let alert = UIAlertController(title: "Heads Up!", message: "No folder name was entered. Please enter a folder name to continue.", preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let docRef = fireStoreDb.collection("users").document(userId).collection("Accounts").document(folderName)
+            
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing: )) ?? "nil"
+                    print("Document Data: \(dataDescription)")
+                } else {
+                    // 8.3 - 4:45pm - Working on adding the folder via the 'Add Folder' button
+                    self.fireStoreDb.collection("users").document("\(userId)").collection("Accounts").document("\(folderName)").setData([
+                        "accountName" : folderName
+                    ])
+                }
+            }
+        }
     }
  
     @objc func closeModal() {
