@@ -22,8 +22,6 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     
     
     // Variables
-    let ref = Database.database().reference()
-    
     let fireStoreDb = Firestore.firestore()
     
     // Overrides
@@ -34,6 +32,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     
 
    
+    
     // Actions
     @IBAction func addAccountBtnPressed(_ sender: Any) {
         guard let userId = Auth.auth().currentUser?.uid else { return }

@@ -21,9 +21,7 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     // Variables
-    var ref = Database.database().reference()
     let userID = Auth.auth().currentUser?.uid
-    let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts")
     var accounts: [UserAccount] = []
     let noAccountsLbl = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 25))
 
@@ -39,6 +37,8 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
+        
+        print("UserAccountsVC")
         
         // Update username label
         newRef.getDocument { (document, error) in
@@ -106,9 +106,10 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.tableView.reloadData()
                 }
             }
-        
         }
+    
     }
+    
     
     
     // Actions
@@ -116,9 +117,8 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         do {
             try Auth.auth().signOut()
         } catch {
-            debugPrint("No")
+            print("\(error)")
         }
-        
     }
 
     @IBAction func addBtnPressed(_ sender: Any) {
