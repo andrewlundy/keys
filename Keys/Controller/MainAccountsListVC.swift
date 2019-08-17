@@ -42,10 +42,11 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         
         
         
+        var mainAccounts = [String]()
         
         let newRef = fireStoreDb.collection("users").document("\(userID!)")
         
-        // Get main accounts count
+        // Get main account document IDs
         fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
             var newDocumentIDs: [String] = []
             if let error = error {
@@ -59,10 +60,16 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
             self.tableview.reloadData()
         }
 
+        // Get main account count - still in progress. Try building custom objects to get this to work. - 8/17/2019 AL
         fireStoreDb.collection("users").document("\(userID!)").collection("Accounts").getDocuments { (snapshot, error) in
             for documentID in self.documentIDs {
                 self.fireStoreDb.collection("users").document("\(self.userID!)").collection("Accounts").document(documentID).getDocument(completion: { (document, error) in
-                    print(document?.data())
+                    if let document = document, document.exists {
+                        let documentDescription = document.data().map(String.init(describing:)) ?? ""
+                        mainAccounts.append(documentDescription)
+                    } else {
+                        print("Document doesn't exist")
+                    }
                 })
             }
         }
@@ -156,5 +163,21 @@ class MainAccountsListVC: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-   
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let account = documentIDs[indexPath.row]
+//        let accountVC = UserAccountsVC()
+//        accountVC.title = account
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popViewController(animated: true)
+        } catch {
+            print("\(error)")
+        }
+    }
+    
 }

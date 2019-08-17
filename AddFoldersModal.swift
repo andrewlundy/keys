@@ -111,16 +111,20 @@ class AddFoldersModal: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             let docRef = fireStoreDb.collection("users").document(userId).collection("Accounts").document(folderName)
-            
             docRef.getDocument { (document, error) in
                 if let document = document, document.exists {
                     let dataDescription = document.data().map(String.init(describing: )) ?? "nil"
                     print("Document Data: \(dataDescription)")
                 } else {
-                    // 8.3 - 4:45pm - Working on adding the folder via the 'Add Folder' button
                     self.fireStoreDb.collection("users").document("\(userId)").collection("Accounts").document("\(folderName)").setData([
                         "accountName" : folderName
-                    ])
+                    ]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document print was successful")
+                        }
+                    }
                 }
             }
         }

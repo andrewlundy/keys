@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6f-z6-obs">
@@ -143,7 +143,7 @@
             <objects>
                 <viewController id="8OZ-cZ-fu7" customClass="SignUpViewController" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lgU-qQ-CJE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFA-J1-1e5">
@@ -249,7 +249,7 @@
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Hdl-jz-jol">
-                                <rect key="frame" x="188.66666666666666" y="167.66666666666666" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="141.66666666666669" width="37" height="37"/>
                                 <color key="color" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -284,11 +284,11 @@
             <objects>
                 <viewController storyboardIdentifier="UserAccountsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j7R-FJ-l1n" customClass="UserAccountsVC" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="au9-uJ-Mej">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="105" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Puf-lf-bC1">
-                                <rect key="frame" x="0.0" y="56" width="414" height="579"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="527"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="105" id="0vU-Rc-WPu" customClass="AccountCell" customModule="Keys" customModuleProvider="target">
@@ -371,7 +371,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iJ-ti-rX2">
-                                <rect key="frame" x="10" y="637" width="48" height="35"/>
+                                <rect key="frame" x="10" y="585" width="48" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Afj-mS-hh7"/>
                                 </constraints>
@@ -421,16 +421,16 @@
             </objects>
             <point key="canvasLocation" x="2754" y="658"/>
         </scene>
-        <!--Keys-->
+        <!--Main Accounts-->
         <scene sceneID="VpN-zh-UQA">
             <objects>
-                <viewController title="Keys" id="P0y-OP-ft2" customClass="MainAccountsListVC" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Main Accounts" id="P0y-OP-ft2" customClass="MainAccountsListVC" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Qk-ot-ZHd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKk-Yt-blY">
-                                <rect key="frame" x="10" y="637" width="48" height="35"/>
+                                <rect key="frame" x="10" y="585" width="48" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="lvd-Co-As1"/>
                                 </constraints>
@@ -438,8 +438,8 @@
                                     <color key="titleColor" red="0.050980392159999999" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutBtnPressed:" destination="P0y-OP-ft2" eventType="touchUpInside" id="3lF-4B-wT4"/>
                                     <action selector="logoutBtnPressed:" destination="j7R-FJ-l1n" eventType="touchUpInside" id="QOU-sP-Sod"/>
+                                    <action selector="logoutBtnPressed:" destination="P0y-OP-ft2" eventType="touchUpInside" id="a0r-Ei-VfZ"/>
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" placeholder="Search Accounts" translatesAutoresizingMaskIntoConstraints="NO" id="DkN-kn-1Su">
@@ -447,7 +447,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="39g-nL-56t">
-                                <rect key="frame" x="0.0" y="56" width="414" height="579"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="527"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainAccountCell" rowHeight="100" id="fun-Oa-ozj" customClass="MainAccountCell" customModule="Keys" customModuleProvider="target">
@@ -529,7 +529,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UvQ-pA-jYh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Keys" id="WUd-jh-xdI">
+                    <navigationItem key="navigationItem" title="Main Accounts" id="WUd-jh-xdI">
                         <barButtonItem key="leftBarButtonItem" id="TN4-xz-3AC"/>
                     </navigationItem>
                     <connections>
@@ -546,11 +546,11 @@
             <objects>
                 <viewController id="xEk-fk-qnu" customClass="AccountDetailsVC" customModule="Keys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPS-h2-6tH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cyq-Dd-P3o">
-                                <rect key="frame" x="0.0" y="65" width="414" height="607"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="555"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountDetailCell" rowHeight="65" id="ANK-ib-rLg" customClass="AccountDetailsCell" customModule="Keys" customModuleProvider="target">
@@ -814,8 +814,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u9Y-Xd-TN6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="8n9-UU-Ma0">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="8n9-UU-Ma0">
+                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.050980392156862744" green="0.24313725490196078" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
@@ -823,7 +823,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="28"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
@@ -841,7 +841,7 @@
         <image name="facebookLogo" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ndf-Kl-hwE"/>
+        <segue reference="yUn-h8-zmV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

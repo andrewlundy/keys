@@ -53,12 +53,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     alert.addAction(alertAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    self.userTxtField.text = ""
-                    self.passwordTxtField.text = ""
+                    
                     self.performSegue(withIdentifier: SEGUE_TO_FULL_ACCOUNT_LIST, sender: nil)
                 }
             }
         }
+        self.userTxtField.text = ""
+        self.passwordTxtField.text = ""
     }
     
     @IBAction func resetPasswordBtnPressed(_ sender: Any) {

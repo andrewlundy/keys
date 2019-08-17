@@ -107,16 +107,17 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         }
+    
     }
+    
     
     
     // Actions
     @IBAction func logoutBtnPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            
         } catch {
-            debugPrint("No")
+            print("\(error)")
         }
     }
 
