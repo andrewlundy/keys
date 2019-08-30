@@ -1,8 +1,12 @@
 # Keys
 My first indie app - a password management application built for iOS.
 
-Currently in the Alpha stages of development. 
+Currently in the alpha stages of development. 
 
 
 ------
-By using Firestore to store user data, authenticate user sign in and update data in realtime on the client side - Keys is a fullstack password management product.
+By using Firestore to store user data, authenticate user sign in and update data in realtime on the client side - Keys is a fullstack password management product. 
+
+The idea comes from my own struggles and that I write all of my passwords down on paper. This idea has been detrimental in my iOS development learning process.
+
+I plan to launch the public version in 2020.
