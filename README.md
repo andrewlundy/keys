@@ -1,5 +1,5 @@
 # Keys
-My first indie app idea - a password management application built for iOS.
+My first indie app - a password management application built for iOS.
 
 Currently in the Alpha stages of development. 
 
