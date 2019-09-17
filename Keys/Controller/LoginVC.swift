@@ -28,7 +28,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         passwordTxtField.delegate = self
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if Auth.auth().currentUser != nil {
-                self.performSegue(withIdentifier: SEGUE_TO_FULL_ACCOUNT_LIST, sender: nil)
+                self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
             } else {
                 print("Please sign up")
             }
@@ -53,8 +53,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     alert.addAction(alertAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    
-                    self.performSegue(withIdentifier: SEGUE_TO_FULL_ACCOUNT_LIST, sender: nil)
+                    self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
                 }
             }
         }

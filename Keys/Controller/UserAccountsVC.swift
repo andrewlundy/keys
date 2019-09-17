@@ -136,7 +136,6 @@ class UserAccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
  
-    
     // Protocol Conformation Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count

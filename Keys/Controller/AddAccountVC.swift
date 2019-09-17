@@ -28,6 +28,9 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+        
+  
+        
     }
     
 
@@ -41,22 +44,44 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         guard let password = passwordTxtField.text, passwordTxtField.text != nil else { return }
         guard var username = usernameTxtField.text, usernameTxtField.text != nil else { return }
         
-        if usernameTxtField.text!.isEmpty {
-            username = "No username"
-        }
-     
-        fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).setData([
-            "accountName": accountName,
-            "username": username,
-            "email": email,
-            "password": password
-        ]) { error in
-            if let error = error {
-                print("Error writing to document: \(error)")
+        
+        var accountRef = fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName)
+        accountRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print(dataDescription)
             } else {
-                print("Write to document was successful.")
+                print("Document does not exist.")
             }
         }
+        
+//        if accountName == "" {
+//            fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    let alert = UIAlertController(title: "Wait a Second!", message: "An account with this name is already in use.", preferredStyle: .alert)
+//                    let okayAction = UIAlertAction(title: "Okay", style: .default)
+//                    alert.addAction(okayAction)
+//                    print("This account is already in use.")
+//                } else if self.usernameTxtField.text!.isEmpty {
+//                    username = "No username"
+//                } else {
+//                    self.fireStoreDb.collection("users").document(userId).collection("Accounts").document(accountName).setData([
+//                        "accountName": accountName,
+//                        "username": username,
+//                        "email": email,
+//                        "password": password
+//                    ]) { error in
+//                        if let error = error {
+//                            print("Error writing to document: \(error)")
+//                        } else {
+//                            print("Write to document was successful.")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+    
+        
     
         accountNameTxtField.text = ""
         usernameTxtField.text = ""

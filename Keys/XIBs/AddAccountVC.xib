@@ -28,9 +28,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osn-8N-GJ9" customClass="ModalView" customModule="Keys" customModuleProvider="target">
                     <rect key="frame" x="67" y="135.5" width="280" height="375"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiF-IN-nNy">
-                            <rect key="frame" x="247" y="8" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiF-IN-nNy">
+                            <rect key="frame" x="253" y="12" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="KE6-j0-MT2"/>
+                                <constraint firstAttribute="height" constant="15" id="sFA-xD-KnJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" image="error"/>
                             <connections>
                                 <action selector="closeBtnPressed:" destination="-1" eventType="touchUpInside" id="eK1-aw-B4h"/>
@@ -137,6 +141,8 @@
                         <constraint firstAttribute="height" constant="375" id="MEg-3x-bpW"/>
                         <constraint firstAttribute="width" constant="280" id="PoM-YY-Z0e"/>
                         <constraint firstItem="f5s-fD-0rI" firstAttribute="centerX" secondItem="Osn-8N-GJ9" secondAttribute="centerX" id="ZoD-rP-FeF"/>
+                        <constraint firstAttribute="trailing" secondItem="oiF-IN-nNy" secondAttribute="trailing" constant="12" id="gyt-0b-QIl"/>
+                        <constraint firstItem="oiF-IN-nNy" firstAttribute="top" secondItem="Osn-8N-GJ9" secondAttribute="top" constant="12" id="v9V-Gw-88o"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -151,7 +157,7 @@
                 <constraint firstItem="Osn-8N-GJ9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-125" id="iWa-nO-GI3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.00892857142856"/>
         </view>
     </objects>
     <resources>

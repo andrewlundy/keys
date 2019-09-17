@@ -15,7 +15,6 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // Outlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var accountNameLbl: UILabel!
     
     
     // Variables
@@ -34,7 +33,7 @@ class AccountDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        let userRef = Database.database().reference(withPath: "users/\(Auth.auth().currentUser!.uid)/accounts/\(account.name)")
         self.tableView.tableFooterView = UIView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editAccountDetails))
-        accountNameLbl.text = account.name
+        title = account.name
         tableView.reloadData()
     }
     
