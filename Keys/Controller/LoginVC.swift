@@ -53,11 +53,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     alert.addAction(alertAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    self.userTxtField.text = ""
-                    self.passwordTxtField.text = ""
                     self.performSegue(withIdentifier: SEGUE_TO_USER_ACCOUNTS, sender: nil)
                 }
             }
+            self.userTxtField.text = ""
+            self.passwordTxtField.text = ""
         }
     }
     
